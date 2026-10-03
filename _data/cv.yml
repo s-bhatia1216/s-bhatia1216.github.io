@@ -20,10 +20,10 @@ cv:
       studyType: B.S.E.
       start_date: 2022-09
       end_date: 2027-01
-      courses: Computer Vision, Robotics, Algorithms & Data Structures, Computer Architecture, Microprocessors, Operating Systems, Distributed Systems, Automatic Control Systems, Optimal Control, Space System Design, Aircraft Flight Dynamics, High-Tech Entrepreneurship
+      courses: Computer Vision, Robotics, Algorithms & Data Structures, Computer Architecture, Microprocessors, Operating Systems, Distributed Systems, Automatic Control Systems, Optimal Control, Space System Design, Aircraft Flight Dynamics, Ethics of Computing, High-Tech Entrepreneurship
       highlights:
-      - 'Senior Thesis: Multi-Particle Control for Nonlinear Data Assimilation in Chaotic Systems (advisor: Prof. Ryne Beeson)'
-      - Rocketry Club Co-President; Autonomous Vehicles Engineering; Society of Women Engineers; Rewriting the Code Fellow; Reboot Representation Scholar
+      - 'Senior Thesis: Multi-Particle Control for Nonlinear Data Assimilation in Chaotic Systems, an imitation-learning framework for amortizing optimal particle-filter nudging in chaotic dynamical systems, achieving a 77% RMSE reduction on Lorenz-63 and scaling to Lorenz-96 (advisor: Prof. Ryne Beeson; MAE 497, April 2026)'
+      - Rocketry Club (Co-President; managed 7 project teams across 95+ members); Autonomous Vehicles Engineering; Society of Women Engineers; Rewriting the Code Fellow; Reboot Representation Scholar; Students for the Exploration and Development of Space; American Institute of Aeronautics and Astronautics
     - institution: Cornell University, Break Through Tech AI
       location: Remote
       area: Machine Learning Foundations
@@ -32,7 +32,7 @@ cv:
       end_date: 2025-04
       score: 94%
       highlights:
-      - Supervised and unsupervised learning, neural network architectures, model evaluation, and deployment pipelines; culminated in an industry challenge project.
+      - Completed a foundational ML curriculum covering supervised and unsupervised learning, neural network architectures, model evaluation, and deployment pipelines; culminated in a real-world industry challenge project.
     Experience:
     - company: Apple Inc.
       position: AI Performance Engineer Intern
@@ -40,48 +40,50 @@ cv:
       start_date: Jun 2026
       end_date: Aug 2026
       highlights:
-      - Profiled and resolved performance bottlenecks via Thermal, Acoustics, Power, and Performance (TAPP) analysis of heavy graphics/ML inference workloads on next-gen MacBook Pro and iPad SoCs.
-      - Profiled end-to-end model execution graphs to identify compute-bound and memory-bound stages, informing hardware co-design for upcoming Apple Silicon.
+      - Profiled and resolved performance bottlenecks across the stack via Thermal, Acoustics, Power, and Performance (TAPP) analysis, shipping fixes for 10 issues across graphics and ML inference pipelines on next-generation MacBook Pro and Mac Studio system and SoC architectures.
+      - Diagnosed a compute-bound bottleneck in a production LLM MoE inference pipeline; built internal profiling tooling that surfaced 3 additional issues, boosting performance by 30%, and presented findings to stakeholders to drive engineering decisions.
+      - Profiled end-to-end model execution graphs to identify compute-bound and memory-bound stages, informing hardware co-design decisions for upcoming Apple Silicon releases.
     - company: Apple Inc.
       position: AI Engineer Intern
       location: Beaverton, OR
       start_date: Jan 2025
       end_date: Aug 2025
       highlights:
-      - Developed parallel algorithms for a 3D-GenAI post-processing pipeline, implementing Dual Contouring, Catmull-Clark, and OpenVDB from scratch for on-device quad-mesh generation up to 1024³ resolution.
-      - Profiled and optimized inference for 8 GenAI models across GPU architectures, increasing GPU utilization by 15%; implemented INT8/INT4 weight quantization, reducing memory by 44%.
-      - Presented quantization findings and profiling methodology to the systems team, informing the on-device inference strategy for the next release cycle.
+      - Engineered a 3D-GenAI post-processing pipeline from scratch, developing parallel algorithms that implement the Dual Contouring, Catmull-Clark, and OpenVDB papers as production modules, enabling on-device 3D quad-mesh generation up to 1024³ resolution.
+      - Built and deployed a model quantization toolkit (INT8, INT4, mixed-precision) across 8 GenAI models, reducing memory footprint by 44% and unlocking on-device deployment; profiled and optimized inference across GPU architectures, increasing GPU utilization by 15%.
+      - Presented quantization findings and profiling methodology to the broader systems team, directly informing the on-device inference strategy for the following release cycle.
     - company: The Estée Lauder Companies Inc.
       position: Machine Learning Engineer Intern
       location: New York, NY
       start_date: Aug 2024
       end_date: Dec 2024
       highlights:
-      - Trained a Bayesian regression model on 50,000+ transactions, improving targeting accuracy by 40%; applied MCMC sampling in a Regression Discontinuity Design, reducing confidence interval widths by 15%.
-      - Delivered credible interval estimates for gift-driven revenue lift that informed budget allocation for the next promotional cycle.
+      - Designed and shipped a Bayesian regression model trained on 50,000+ transactions into a targeting pipeline, improving targeting accuracy by 40%; built a Monte Carlo/MCMC inference pipeline for a Regression Discontinuity Design, reducing credible interval widths by 15%.
+      - Delivered credible interval estimates for gift-driven revenue lift to the analytics and marketing teams, directly informing budget allocation for the following promotional cycle.
     - company: Johns Hopkins University Applied Physics Laboratory
       position: Software Development Engineer Intern
       location: Laurel, MD
       start_date: Jun 2024
       end_date: Oct 2024
       highlights:
-      - Developed classified C++ graphics software for threat signature modeling; wrote 75+ test cases resolving cross-API rendering discrepancies between OpenGL and Vulkan backends.
-      - Designed the software architecture for an upcoming rendering feature; technical specification reviewed and approved by senior engineers.
+      - Built classified computer graphics software in C++ for threat signature modeling; authored 75+ automated test cases, resolving cross-API rendering discrepancies between OpenGL and Vulkan backends by 80%.
+      - Designed the software architecture for an upcoming rendering feature, producing a technical specification reviewed and approved by senior engineers.
     - company: Space Technology & Aeronautical Rocketry (STAR)
       position: Astrodynamics Intern & Team Lead
       location: Remote
       start_date: Dec 2023
       end_date: Jan 2024
       highlights:
-      - Led 5 interns in designing and validating a trans-lunar injection trajectory with GMAT and custom C++ scripts; delivered a feasibility report with recommended mission profiles.
+      - Led a team of 5 interns to establish viable lunar trajectory parameters via a trans-lunar injection maneuver, designing and validating the flight path using the General Mission Analysis Tool (GMAT) and custom C++ scripts.
+      - Optimized trajectory design by iterating over launch windows, Δv budgets, and insertion burn parameters, delivering a feasibility report with recommended mission profiles.
     - company: EMTech Space S.A.
       position: Space Software Engineer Intern
       location: Athens, Greece
       start_date: Jun 2023
       end_date: Aug 2023
       highlights:
-      - Implemented a genetic algorithm for orbit design, reducing computation time by 30% across 1,000+ scenarios; authored 3 technical reports approved by ESA for the Hellenic Space Dawn CubeSat mission.
-      - Conducted mission analysis covering orbital mechanics, launch windows, ground station coverage, and link budgets.
+      - Designed and implemented a novel genetic algorithm-based orbit design tool, cutting computation time by 30% across 1,000+ scenarios; authored 3 technical reports approved by the European Space Agency for the Hellenic Space Dawn CubeSat mission.
+      - Conducted a mission analysis covering orbital mechanics, launch windows, ground station coverage, and link budgets.
     # Research, Teaching, and Leadership are not special-cased by the al_folio_cv
     # theme, so they render through its generic branch, which only shows `bullet`
     # (or `label`/`details`) entries. Keep these as markdown bullets.
@@ -126,7 +128,7 @@ cv:
         **Princeton University, Department of Computer Science**<br>
         *Undergraduate Course Assistant, Linear Systems & Intro to Computer Science · Feb 2024 to Dec 2024 · Princeton, NJ*
 
-        - Led weekly office hours for **130+ students**, teaching applications of linear algebra (eigendecomposition, SVD, PCA) to CS problems including image compression and dimensionality reduction.
+        - Led weekly office hours for **150+ students**, teaching applications of linear algebra (eigendecomposition, SVD, PCA) to CS problems including image compression and dimensionality reduction.
         - Collaborated with faculty to design problem sets and exam questions, contributing to a measurable 5% improvement in the Linear Systems final exam average.
     - bullet: |
         **Princeton Rocketry Club**<br>
@@ -165,16 +167,19 @@ cv:
     Skills:
     - name: Languages
       icon: fa-solid fa-code
-      keywords: Python, Java, C++, Go, Swift, Objective-C, Assembly, JavaScript, TypeScript, HTML, CSS
+      keywords: Python, Java, C++, Go, Swift, Objective-C, Assembly, HTML, CSS, JavaScript, TypeScript
     - name: GPU / ML
       icon: fa-solid fa-microchip
-      keywords: PyTorch, TensorFlow, MLX, Core ML, Metal Performance Shaders, CUDA, quantization, NumPyro, OpenCV, scikit-learn
+      keywords: PyTorch, TensorFlow, MLX, Core ML, Metal Performance Shaders, CUDA, quantization (INT8, INT4, mixed-precision), LLM tooling, NumPyro, OpenCV, scikit-learn, Pandas, NumPy
     - name: Quantitative
       icon: fa-solid fa-square-root-variable
-      keywords: Linear algebra, Bayesian regression, MCMC, Kalman filtering, regression discontinuity design
+      keywords: Linear algebra, Bayesian regression, Monte Carlo/MCMC, Kalman filtering, regression discontinuity design
+    - name: Systems & APIs
+      icon: fa-solid fa-server
+      keywords: REST APIs, Node.js, React, SQL/NoSQL databases, Docker, Git, CI/CD, AWS/GCP
     - name: Robotics & Systems
       icon: fa-solid fa-robot
       keywords: ROS, FastMCP, Vulkan, OpenGL, OpenVDB
-    - name: Tools
+    - name: Tools & Hardware
       icon: fa-solid fa-screwdriver-wrench
-      keywords: React, Node.js, Git, MATLAB, SolidWorks, Fusion 360, CREO, Raspberry Pi, Linux
+      keywords: Bootstrap, MATLAB, CAD (SolidWorks, Fusion 360, CREO), Raspberry Pi, Linux
