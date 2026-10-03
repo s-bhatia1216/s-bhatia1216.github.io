@@ -22,6 +22,7 @@ cv:
       end_date: 2027-01
       courses: Computer Vision, Robotics, Algorithms & Data Structures, Computer Architecture, Microprocessors, Operating Systems, Distributed Systems, Automatic Control Systems, Optimal Control, Space System Design, Aircraft Flight Dynamics, Ethics of Computing, High-Tech Entrepreneurship
       highlights:
+      - 'Timeline: took a gap semester in Spring 2025 for an 8-month internship at Apple, so classes end in December 2026 and the degree is conferred in January 2027 (Class of 2027).'
       - 'Senior Thesis: Multi-Particle Control for Nonlinear Data Assimilation in Chaotic Systems, an imitation-learning framework for amortizing optimal particle-filter nudging in chaotic dynamical systems, achieving a 77% RMSE reduction on Lorenz-63 and scaling to Lorenz-96 (advisor: Prof. Ryne Beeson; MAE 497, April 2026)'
       - Rocketry Club (Co-President; managed 7 project teams across 95+ members); Autonomous Vehicles Engineering; Society of Women Engineers; Rewriting the Code Fellow; Reboot Representation Scholar; Students for the Exploration and Development of Space; American Institute of Aeronautics and Astronautics
     - institution: Cornell University, Break Through Tech AI
