@@ -1,0 +1,43 @@
+---
+---
+
+@thesis{bhatia2026thesis,
+  abbr        = {Thesis},
+  type        = {B.S.E. Senior Thesis},
+  title       = {Multi-Particle Control for Nonlinear Data Assimilation in Chaotic Systems},
+  author      = {Bhatia, Sonal},
+  school      = {Princeton University, Department of Mechanical \& Aerospace Engineering},
+  year        = {2026},
+  month       = apr,
+  note        = {Advisor: Prof. Ryne Beeson. Reader: Prof. Christine Allen-Blanchette. 189 pages.},
+  abstract    = {An imitation-learning framework that amortizes the cost of optimal particle-filter nudging offline. A Feynman-Kac Monte Carlo oracle generates expert controls across a low-discrepancy sample of the chaotic attractor, with Girsanov-Radon-Nikodym corrections applied along each trajectory to preserve importance-sampling validity. A neural network trained by behavioral cloning replaces expensive online Monte Carlo rollouts with a single forward pass. On Lorenz-63 the per-particle controller reduces normalized RMSE by 77% relative to the uncontrolled particle filter at 70% lower computational cost than the oracle-nudged filter; the approach scales to Lorenz-96 with no architectural changes. The central argument is that importance-sampling correctness, not model complexity, is the primary constraint on learned particle filter controllers.},
+  selected    = {true},
+  bibtex_show = {true}
+}
+
+@techreport{bhatia2026iw,
+  abbr        = {IW},
+  type        = {Junior Independent Work},
+  title       = {Learning Particle-Wise Control for Nonlinear Data Assimilation: From Diffusion Models to Supervised Regression},
+  author      = {Bhatia, Sonal},
+  institution = {Princeton University},
+  year        = {2026},
+  month       = jan,
+  note        = {Advisor: Prof. Ryne Beeson. Readers: Profs. Kolemen and Rowley. 86 pages.},
+  abstract    = {A systematic comparison of diffusion-based and regression-based learned control for particle filtering. Identifies a structural mismatch between generative models and importance sampling: diffusion models violate particle independence, lack importance-weight awareness, and are locally inconsistent on the chaotic attractor. A supervised regression framework maps particle state, observation, and time-to-observation to HJB-inspired nudging control; closed-loop experiments show strong deterministic control improves state correction but induces particle degeneracy without proposal correction.},
+  selected    = {true},
+  bibtex_show = {true}
+}
+
+@techreport{bhatia2025iw,
+  abbr        = {IW},
+  type        = {Junior Independent Work},
+  title       = {Optimal Control in the Filtering of Chaotic Systems Using Adaptive ML Algorithms},
+  author      = {Bhatia, Sonal},
+  institution = {Princeton University},
+  year        = {2025},
+  month       = jan,
+  note        = {Advisor: Prof. Ryne Beeson. 37 pages.},
+  abstract    = {Progress report establishing the HJB-based control formulation, a Lorenz-63 dataset generation pipeline using Euler-Maruyama integration, and baseline comparisons across classical filtering methods, laying the groundwork for the senior thesis.},
+  bibtex_show = {true}
+}

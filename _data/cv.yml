@@ -1,0 +1,180 @@
+---
+cv:
+  name: Sonal Bhatia
+  label: Mechanical & Aerospace Engineering, Princeton University
+  email: sbhatia1216@gmail.com
+  location: Princeton, NJ
+  image: ''
+  summary: Robotics, learned control for chaotic systems, and ML inference performance on Apple Silicon.
+  social_networks:
+  - network: GitHub
+    username: s-bhatia1216
+  - network: LinkedIn
+    username: sbhatia1216
+  sections:
+    Education:
+    - institution: Princeton University
+      location: Princeton, NJ
+      url: https://www.princeton.edu/
+      area: Mechanical & Aerospace Engineering; minors in Computer Science and Robotics
+      studyType: B.S.E.
+      start_date: 2022-09
+      end_date: 2027-01
+      courses: Computer Vision, Robotics, Algorithms & Data Structures, Computer Architecture, Microprocessors, Operating Systems, Distributed Systems, Automatic Control Systems, Optimal Control, Space System Design, Aircraft Flight Dynamics, High-Tech Entrepreneurship
+      highlights:
+      - 'Senior Thesis: Multi-Particle Control for Nonlinear Data Assimilation in Chaotic Systems (advisor: Prof. Ryne Beeson)'
+      - Rocketry Club Co-President; Autonomous Vehicles Engineering; Society of Women Engineers; Rewriting the Code Fellow; Reboot Representation Scholar
+    - institution: Cornell University, Break Through Tech AI
+      location: Remote
+      area: Machine Learning Foundations
+      studyType: Certificate
+      start_date: 2024-05
+      end_date: 2025-04
+      score: 94%
+      highlights:
+      - Supervised and unsupervised learning, neural network architectures, model evaluation, and deployment pipelines; culminated in an industry challenge project.
+    Experience:
+    - company: Apple Inc.
+      position: AI Performance Engineer Intern
+      location: Cupertino, CA
+      start_date: Jun 2026
+      end_date: Aug 2026
+      highlights:
+      - Profiled and resolved performance bottlenecks via Thermal, Acoustics, Power, and Performance (TAPP) analysis of heavy graphics/ML inference workloads on next-gen MacBook Pro and iPad SoCs.
+      - Profiled end-to-end model execution graphs to identify compute-bound and memory-bound stages, informing hardware co-design for upcoming Apple Silicon.
+    - company: Apple Inc.
+      position: AI Engineer Intern
+      location: Beaverton, OR
+      start_date: Jan 2025
+      end_date: Aug 2025
+      highlights:
+      - Developed parallel algorithms for a 3D-GenAI post-processing pipeline, implementing Dual Contouring, Catmull-Clark, and OpenVDB from scratch for on-device quad-mesh generation up to 1024³ resolution.
+      - Profiled and optimized inference for 8 GenAI models across GPU architectures, increasing GPU utilization by 15%; implemented INT8/INT4 weight quantization, reducing memory by 44%.
+      - Presented quantization findings and profiling methodology to the systems team, informing the on-device inference strategy for the next release cycle.
+    - company: The Estée Lauder Companies Inc.
+      position: Machine Learning Engineer Intern
+      location: New York, NY
+      start_date: Aug 2024
+      end_date: Dec 2024
+      highlights:
+      - Trained a Bayesian regression model on 50,000+ transactions, improving targeting accuracy by 40%; applied MCMC sampling in a Regression Discontinuity Design, reducing confidence interval widths by 15%.
+      - Delivered credible interval estimates for gift-driven revenue lift that informed budget allocation for the next promotional cycle.
+    - company: Johns Hopkins University Applied Physics Laboratory
+      position: Software Development Engineer Intern
+      location: Laurel, MD
+      start_date: Jun 2024
+      end_date: Oct 2024
+      highlights:
+      - Developed classified C++ graphics software for threat signature modeling; wrote 75+ test cases resolving cross-API rendering discrepancies between OpenGL and Vulkan backends.
+      - Designed the software architecture for an upcoming rendering feature; technical specification reviewed and approved by senior engineers.
+    - company: Space Technology & Aeronautical Rocketry (STAR)
+      position: Astrodynamics Intern & Team Lead
+      location: Remote
+      start_date: Dec 2023
+      end_date: Jan 2024
+      highlights:
+      - Led 5 interns in designing and validating a trans-lunar injection trajectory with GMAT and custom C++ scripts; delivered a feasibility report with recommended mission profiles.
+    - company: EMTech Space S.A.
+      position: Space Software Engineer Intern
+      location: Athens, Greece
+      start_date: Jun 2023
+      end_date: Aug 2023
+      highlights:
+      - Implemented a genetic algorithm for orbit design, reducing computation time by 30% across 1,000+ scenarios; authored 3 technical reports approved by ESA for the Hellenic Space Dawn CubeSat mission.
+      - Conducted mission analysis covering orbital mechanics, launch windows, ground station coverage, and link budgets.
+    # Research, Teaching, and Leadership are not special-cased by the al_folio_cv
+    # theme, so they render through its generic branch, which only shows `bullet`
+    # (or `label`/`details`) entries. Keep these as markdown bullets.
+    Research:
+    - bullet: |
+        **Self-Organizing Swarms & Robotics (SSR) Lab, Princeton University**<br>
+        *Undergraduate Researcher, PI: Prof. Radhika Nagpal · Aug 2026 to Dec 2026 · Princeton, NJ*
+
+        - Building a fleet of 6 to 10 Tumblenauts microgravity inspection robots alongside a PhD student, developing motion planning and ML-based autonomy software ahead of a ZeroG parabolic flight test in November 2026.
+        - Designed and implemented tumbling-target motion planning for the Tumblenauts robots, generating stable approach and grasp trajectories under free-floating, unactuated tumble dynamics with no reliable gravity reference frame.
+    - bullet: |
+        **Beeson Group, Princeton University**<br>
+        *Undergraduate Researcher, Advisor: Prof. Ryne Beeson · Aug 2026 to Dec 2026 · Princeton, NJ*
+
+        - Researching physics-informed neural network (PINN) methods for tropical cyclone vortex initialization, extending an existing forecasting framework.
+        - Training the PINN to jointly satisfy observational fit and the governing vortex dynamics equations, embedding physical constraints directly into the loss function to improve initialization accuracy over purely data-driven baselines.
+    - bullet: |
+        **Senior Thesis, Department of Mechanical & Aerospace Engineering, Robotics**<br>
+        *Advisor: Prof. Ryne Beeson; Reader: Prof. Christine Allen-Blanchette · Aug 2025 to Apr 2026 · Princeton, NJ*
+
+        - Thesis: *Multi-Particle Control for Nonlinear Data Assimilation in Chaotic Systems* (189 pages, April 2026).
+        - Developed an imitation-learning framework that amortizes the cost of optimal particle-filter nudging offline: a Feynman-Kac Monte Carlo oracle generates expert controls across a low-discrepancy sample of the chaotic attractor, with Girsanov-Radon-Nikodym corrections applied along each trajectory to preserve importance-sampling validity.
+        - Trained a neural network via behavioral cloning to imitate the oracle's per-particle control policy, replacing expensive online Monte Carlo rollouts with a single forward pass at deployment; evaluated four model variants: a per-particle regression baseline, two DeepSets ensemble-aware controllers with weight-aware pooling, and a residual architecture initialized from the per-particle checkpoint.
+        - On Lorenz-63, the per-particle controller achieved a **77% reduction** in normalized RMSE relative to the uncontrolled particle filter and a 4× improvement over the oracle-nudged particle filter, at 70% lower computational cost.
+        - Demonstrated scaling to Lorenz-96 (K = 8 state variables) with no architectural changes, matching oracle accuracy while maintaining higher normalized effective sample size at 27% lower cost.
+    - bullet: |
+        **Junior Independent Work, Princeton University**<br>
+        *Advisor: Prof. Ryne Beeson; Readers: Profs. Kolemen & Rowley · May 2024 to Jan 2026 · Princeton, NJ*
+
+        - IW F25: *Learning Particle-Wise Control for Nonlinear Data Assimilation: From Diffusion Models to Supervised Regression* (86 pages, January 2026).
+        - Conducted a systematic comparison of diffusion-based and regression-based learned control for particle filtering, identifying a structural mismatch between generative models and importance sampling.
+        - Built a supervised regression framework that learns a deterministic mapping from particle state, observation, and time-to-observation to HJB-inspired nudging control, using a scalable dataset sampled from the Lorenz-63 attractor.
+        - IW F24: *Optimal Control in the Filtering of Chaotic Systems Using Adaptive ML Algorithms* (37 pages, January 2025), establishing the HJB-based control formulation and baseline comparisons as groundwork for the thesis.
+    Teaching:
+    - bullet: |
+        **Princeton University, Keller Center for Engineering Education**<br>
+        *Undergraduate Course Assistant, Linear Systems (EGR 154) · Feb 2026 to May 2026 · Princeton, NJ*
+
+        - Led weekly office hours and problem-solving sessions for **100+ students**, reinforcing linear algebra and systems theory concepts including eigendecomposition, SVD, state-space representations, and frequency-domain analysis.
+        - Graded problem sets and provided detailed written feedback; collaborated with graduate TAs to address conceptual gaps identified across student submissions.
+    - bullet: |
+        **Princeton University, Department of Computer Science**<br>
+        *Undergraduate Course Assistant, Linear Systems & Intro to Computer Science · Feb 2024 to Dec 2024 · Princeton, NJ*
+
+        - Led weekly office hours for **130+ students**, teaching applications of linear algebra (eigendecomposition, SVD, PCA) to CS problems including image compression and dimensionality reduction.
+        - Collaborated with faculty to design problem sets and exam questions, contributing to a measurable 5% improvement in the Linear Systems final exam average.
+    - bullet: |
+        **Princeton Rocketry Club**<br>
+        *Workshop Instructor · Sep 2022 to Dec 2024 · Princeton, NJ*
+
+        - Taught workshops on CAD (SolidWorks), OpenRocket flight simulation software, composite fabrication, and rocket assembly to new members each semester.
+    Leadership:
+    - bullet: |
+        **MATRIX Heliophysics Space Mission Architecture Design (MAE 342)**<br>
+        *Project Manager & Team Lead · Sep 2025 to Dec 2025 · Princeton University*
+
+        - Led 16 students through a full-iteration MIDEX-class heliophysics constellation design (MATRIX, $350M cost cap); recognized as an outstanding leader and most impressive oral presenter, and commended at the JHU APL site visit.
+        - Maintained the Gantt chart and task tracker, facilitated weekly cross-subsystem meetings, and reconciled mass, power, data, and cost margins across all eight subsystems; earned an A+ and the 4th-highest individual grade in the course.
+    - bullet: |
+        **Break Through Tech AI, Cornell University**<br>
+        *Artificial Intelligence & Machine Learning Fellow · May 2024 to Apr 2025 · Remote*
+
+        - Built ML pipelines improving model accuracy by 18% and reducing log loss by 12% through hyperparameter tuning and regularization.
+        - Selected for a competitive AI/ML fellowship; completed an industry-partnered challenge project applying end-to-end ML pipelines, from feature engineering through model validation, to a real-world business dataset.
+    - bullet: |
+        **Princeton Rocketry Club**<br>
+        *Co-President; previously Systems Engineer, Team Lead, & Professional Development Officer · Sep 2022 to Dec 2024 · Princeton University*
+
+        - Managed 7 cross-functional project teams across **95+ members**; planned a student-led initiative to design and launch a two-stage solid-motor rocket targeting suborbital altitude.
+    - bullet: |
+        **Princeton Autonomous Vehicle Engineering (PAVE)**<br>
+        *Member, Perception & Controls Subteam · Feb 2024 to Dec 2024 · Princeton University*
+
+        - Contributed to the perception stack for an autonomous vehicle platform, working with LiDAR and camera sensor fusion using ROS and OpenCV.
+        - Implemented and tested object detection and lane-tracking algorithms for real-time deployment on embedded hardware.
+    - bullet: |
+        **Space Technology & Aeronautical Rocketry (STAR)**<br>
+        *Astrodynamics Team Lead · Dec 2023 to Jan 2024 · Remote*
+
+        - Led a team of 5 interns to establish viable lunar trajectory parameters via a trans-lunar injection maneuver, designing and validating the flight path with GMAT and custom C++ scripts.
+    Skills:
+    - name: Languages
+      icon: fa-solid fa-code
+      keywords: Python, Java, C++, Go, Swift, Objective-C, Assembly, JavaScript, TypeScript, HTML, CSS
+    - name: GPU / ML
+      icon: fa-solid fa-microchip
+      keywords: PyTorch, TensorFlow, MLX, Core ML, Metal Performance Shaders, CUDA, quantization, NumPyro, OpenCV, scikit-learn
+    - name: Quantitative
+      icon: fa-solid fa-square-root-variable
+      keywords: Linear algebra, Bayesian regression, MCMC, Kalman filtering, regression discontinuity design
+    - name: Robotics & Systems
+      icon: fa-solid fa-robot
+      keywords: ROS, FastMCP, Vulkan, OpenGL, OpenVDB
+    - name: Tools
+      icon: fa-solid fa-screwdriver-wrench
+      keywords: React, Node.js, Git, MATLAB, SolidWorks, Fusion 360, CREO, Raspberry Pi, Linux

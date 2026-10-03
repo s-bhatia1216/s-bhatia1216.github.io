@@ -1,0 +1,5 @@
+# Map co-author last names to links; used to hyperlink names on the research page.
+# Example:
+# "beeson":
+#   - firstname: ["Ryne", "R."]
+#     url: https://mae.princeton.edu/people/faculty/beeson
