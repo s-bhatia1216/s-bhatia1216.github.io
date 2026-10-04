@@ -6,13 +6,15 @@ importance: 2
 category: systems
 ---
 
-**Mar to Jul 2025** &nbsp;|&nbsp; Open-source contribution &nbsp;|&nbsp; _Python, PyTorch MPS, Metal Performance Shaders_
+> From January - August 2025 & June - August 2026, I worked as an AI Intern in the System Performance Architecture group within Hardware Engineering at Apple Inc. My opinions, repos and other content here are not a reflection of my employers, unless otherwise specified or agreed. I am making my contributions/submissions to the projects in my personal capacity and am not conveying any rights to any intellectual property of any third parties.
+
+**Mar to Jul 2025** &nbsp;|&nbsp; Open-source work at Apple Inc. &nbsp;|&nbsp; _Python, PyTorch MPS, Metal Performance Shaders_
 
 <p>
   <a class="btn btn-sm z-depth-0" role="button" href="https://github.com/openai/shap-e/pull/159" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Pull request #159</a>
 </p>
 
-[Shap-E](https://github.com/openai/shap-e) is OpenAI's open-source model for generating 3D objects from a text prompt or a single image. On an Apple Silicon Mac it couldn't use the GPU at all: it fell back to the CPU, and a single default image-to-3D generation took about **4 hours**. I tracked down why, fixed it, and filed a pull request upstream. With the fix, the same generation runs on the GPU through PyTorch's Metal Performance Shaders (MPS) backend in **just under 4 minutes**, roughly a 60x speedup, on a Mac mini with an M4 Pro.
+[Shap-E](https://github.com/openai/shap-e) is OpenAI's open-source model for generating 3D objects from a text prompt or a single image. On an Apple Silicon Mac it couldn't use the GPU at all: it fell back to the CPU, and a single default image-to-3D generation took about **4 hours**. As part of my open-source work at Apple Inc., I tracked down why, fixed it, and filed a pull request upstream. With the fix, the same generation runs on the GPU through PyTorch's Metal Performance Shaders (MPS) backend in **just under 4 minutes**, roughly a 60x speedup, on a Mac mini with an M4 Pro.
 
 The pull request is open and awaiting review from the Shap-E maintainers.
 
