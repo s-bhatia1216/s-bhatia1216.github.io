@@ -45,7 +45,36 @@ _Oct 2021 to May 2022_
 
 _President and Executive Director · Sep 2018 to May 2022_
 
+- Led the competitive team to victories at the North American International Model UN Conference in Washington, DC, and earned 5 Best Delegate, 3 Outstanding Delegate, 2 Honorable Mention, and 1 Verbal Commendation awards at state-level and international conferences.
+- Served as Executive Director of the third and fourth annual St. Andrew's MUN conferences.
 - Led practice sessions for club members, and kept the club running through the pandemic by leading virtual committee sessions.
+
+## Community
+
+#### Rewriting the Code
+
+_Fellow · Jul 2024 to present_
+
+The largest peer-to-peer network of women in tech, providing support, mentorship, and education that helps pave the way for sustainable careers, professional advancement, and equal opportunities.
+
+#### Reboot Representation
+
+_Reboot Scholar · Jun 2024 to present_
+
+The Reboot Representation Tech Coalition aims to make the tech industry more inclusive by providing mentorship and resources.
+
+#### Business Today
+
+_Staffer for the 50th International Conference, Chief of Team & Content · Sep 2024 to Nov 2024_
+
+The International Conference connects top undergraduate students from around the world with the world's top business leaders.
+
+#### The Cardinal Society, St. Andrew's School
+
+_Tour Guide and Head Admissions Ambassador · Oct 2018 to May 2022_
+
+- Welcomed 70+ prospective families onto campus with personalized tours and information sessions.
+- Represented the school at admissions fairs, both in person and virtually.
 
 ## Volunteering
 
