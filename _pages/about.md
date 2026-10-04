@@ -25,11 +25,17 @@ latest_posts:
   enabled: false
 ---
 
-I'm a senior at Princeton studying Mechanical & Aerospace Engineering, with minors in Computer Science and Robotics. I work at the intersection of control theory, machine learning, and hardware, and I'm drawn to problems that refuse to stay inside one discipline: a filtering problem that turns out to be a learning problem, or a model that only matters once it runs fast on real silicon.
+I'm a Mechanical & Aerospace Engineering undergraduate at Princeton University (B.S.E. expected January 2027), minoring in Computer Science and Robotics. My work sits at the intersection of control theory, machine learning, and hardware: getting robots and learned controllers to behave safely in uncertain, chaotic systems, and making the models behind them run fast on real silicon.
 
-At my core, I'm a problem-solver who likes being deployed where the work actually happens. I want to sit close to the people and systems with the problem, find the constraint that really matters, whether that's a latency target, a power budget, or a robot tumbling with no gravity to lean on, and then build whatever it takes to get past it, from the math to the code to the hardware.
+This fall I joined [Prof. Radhika Nagpal](https://www.radhikanagpal.org/)'s [Self-Organizing Swarms & Robotics (SSR) Lab](https://ssr.princeton.edu/), where I'm building the ZeroG flight-approved version of the Tumblenauts, a swarm of tiny microgravity inspection robots, and developing vision-based collision safety for them. I'm also working with [Prof. Ryne Beeson](https://mae.princeton.edu/people/faculty/beeson)'s [Beeson Group](https://beeson.princeton.edu/) on physics-informed neural networks for initializing tropical cyclone forecasts.
 
-Right now I'm building microgravity inspection robots in Prof. Radhika Nagpal's lab and working on physics-informed neural networks with Prof. Ryne Beeson. Before that, I spent two internships at Apple on AI performance. More in my [CV]({{ '/cv/' | relative_url }}).
+In industry, I've spent two internships at Apple on AI performance: profiling ML inference on next-generation Apple Silicon in Cupertino, and building an on-device 3D generative pipeline and model quantization toolkit in Beaverton. Before that I built C++ graphics software at Johns Hopkins APL, Bayesian models at Estée Lauder, and CubeSat orbit designs for an ESA-reviewed mission at EMTech Space in Athens.
+
+On the research side, my senior thesis with Prof. Beeson built an imitation-learning framework for particle-filter control in chaotic systems, cutting error by 77% on Lorenz-63 and scaling to Lorenz-96 without architectural changes.
+
+I also love teaching. I've been a course assistant for Princeton's Linear Systems and Intro to Computer Science courses, supporting 250+ students across three semesters, and I taught build workshops as co-president of the Princeton Rocketry Club. More on my [teaching]({{ '/teaching/' | relative_url }}) page.
+
+Outside of that: rockets, hackathons, and building computers from scratch.
 
 <h2><a href="{{ '/news/' | relative_url }}" style="color: inherit">updates</a></h2>
 {% include news.liquid limit=true %}
