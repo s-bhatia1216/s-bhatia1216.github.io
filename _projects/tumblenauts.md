@@ -8,7 +8,7 @@ category: robotics
 
 **Aug 2026 to present** &nbsp;|&nbsp; Self-Organizing Swarms & Robotics Lab, Princeton &nbsp;|&nbsp; _Computer vision, 3D tracking, safety filters_
 
-I joined the Tumblenauts project, led by PhD candidate Sneha Ramshanker in Prof. Radhika Nagpal's lab, after the original Tumblenauts paper was published. I'm building the ZeroG flight-approved version of the robots, and this collision-safety work, still in progress, is also my ECE 532 final project.
+I work under PhD candidate [Sneha Ramshanker](https://www.sneharamshanker.com/), who created the Tumblenauts and is first author on the original Tumblenauts paper, in [Prof. Radhika Nagpal](https://www.radhikanagpal.org/)'s [SSR Lab](https://ssr.princeton.edu/). I joined the project after that paper was published, and I'm building the ZeroG flight-approved version of the robots. This collision-safety work, still in progress, is also my ECE 532 final project.
 
 <p>
   <a class="btn btn-sm z-depth-0" role="button" href="https://doi.org/10.1007/978-3-032-26123-6_20" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-book-open"></i> Original Tumblenauts paper (ANTS'26)</a>
