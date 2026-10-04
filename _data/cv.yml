@@ -146,7 +146,7 @@ cv:
     Leadership:
     - bullet: |
         **MATRIX Heliophysics Space Mission Architecture Design (MAE 342)**<br>
-        *Project Manager & Team Lead · Sep 2025 to Dec 2025 · Princeton University*
+        *Project Manager & Team Lead · Jan 2026 to May 2026 · Princeton University*
 
         - Led 16 students through a full-iteration MIDEX-class heliophysics constellation design (MATRIX, $350M cost cap); recognized as an outstanding leader and most impressive oral presenter, and commended at the JHU APL site visit.
         - Maintained the Gantt chart and task tracker, facilitated weekly cross-subsystem meetings, and reconciled mass, power, data, and cost margins across all eight subsystems; earned an A+ and the 4th-highest individual grade in the course.
@@ -181,7 +181,7 @@ cv:
       keywords: PyTorch, TensorFlow, MLX, Core ML, Metal Performance Shaders, CUDA, quantization (INT8, INT4, mixed-precision), LLM tooling, NumPyro, OpenCV, scikit-learn, Pandas, NumPy
     - name: Quantitative
       icon: fa-solid fa-square-root-variable
-      keywords: Linear algebra, Bayesian regression, Monte Carlo/MCMC, Kalman filtering, regression discontinuity design
+      keywords: Linear algebra, Bayesian regression, Monte Carlo/MCMC, probability, statistics, optimal control, data assimilation, Kalman filtering, regression discontinuity design
     - name: Systems & APIs
       icon: fa-solid fa-server
       keywords: REST APIs, Node.js, React, SQL/NoSQL databases, Docker, Git, CI/CD, AWS/GCP
