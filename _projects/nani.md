@@ -36,12 +36,37 @@ With Yash Thakkar
   The hardware at HackPrinceton: a Raspberry Pi running on a battery pack, wired through a breadboard to an IR break-beam sensor pair mounted at either end of a weekly pill organizer. Opening a day's lid and taking a pill breaks the beam.
 </div>
 
+<div class="d-flex justify-content-center mt-3">
+  <video src="{{ '/assets/video/projects/nani/pillbox_demo.mp4' | relative_url }}" poster="{{ '/assets/video/projects/nani/pillbox_demo_poster.jpg' | relative_url }}" class="img-fluid rounded z-depth-1" style="max-width: 640px" controls muted playsinline preload="none" title="Pill box demo"></video>
+</div>
+<div class="caption">
+  Taking a pill from the organizer breaks the IR beam, which the Pi logs as a dose.
+</div>
+
 NANI is a full-stack IoT system with four parts that talk to each other:
 
 - **Pill detection (Raspberry Pi).** An infrared break-beam sensor sits across the medication container. Taking a pill breaks the beam, which the Pi reads on a GPIO pin, debounced so a stray flicker doesn't count as a dose. A small FastAPI service runs the sensor, posts each event to the cloud, and exposes health and start/stop endpoints, and it runs as a system service so it comes back up on its own after a reboot.
 - **Event log (Google Sheets).** Every beam event lands in a shared Google Sheet through an Apps Script webhook, with a timestamp, event type, and device ID, giving caregivers a running record of doses that doesn't depend on the app.
 - **Voice assistant (Node.js and OpenAI).** Maya taps the microphone and asks something like "What's my next medication?" The backend transcribes her with Whisper, answers with GPT-4o-mini playing a warm, patient caretaker who keeps answers short and acknowledges feelings first, and speaks the reply back with text-to-speech, in English or Hindi.
 - **The app (Swift, iOS).** A home screen with her next dose, a medication list with dosage and instructions, the voice assistant, and a Care Circle where family can see her activity and message her. When the beam fires, the app updates the dose time automatically.
+
+<div class="row mt-3">
+  <div class="col-sm-3 col-6 mt-3 mt-md-0">
+    {% include figure.liquid path="assets/img/projects/nani/app_home.jpg" title="Home screen" class="img-fluid rounded z-depth-1" %}
+  </div>
+  <div class="col-sm-3 col-6 mt-3 mt-md-0">
+    {% include figure.liquid path="assets/img/projects/nani/app_home_hindi.jpg" title="Home screen in Hindi" class="img-fluid rounded z-depth-1" %}
+  </div>
+  <div class="col-sm-3 col-6 mt-3 mt-md-0">
+    {% include figure.liquid path="assets/img/projects/nani/app_assistant.jpg" title="AI assistant" class="img-fluid rounded z-depth-1" %}
+  </div>
+  <div class="col-sm-3 col-6 mt-3 mt-md-0">
+    {% include figure.liquid path="assets/img/projects/nani/app_medication.jpg" title="Medication detail" class="img-fluid rounded z-depth-1" %}
+  </div>
+</div>
+<div class="caption">
+  The iOS app: Maya's home screen with her next dose and Care Circle updates, the same screen switched to Hindi, the voice assistant, and a medication's schedule with a shortcut to ask the assistant about it.
+</div>
 
 ## My role
 
