@@ -101,7 +101,6 @@ cv:
         *Undergraduate Researcher, PI: Prof. Radhika Nagpal · Aug 2026 to Dec 2026 · Princeton, NJ*
 
         - Building a fleet of 6 to 10 Tumblenauts microgravity inspection robots alongside a PhD student, developing motion planning and ML-based autonomy software ahead of a ZeroG parabolic flight test in November 2026.
-        - Designed and implemented tumbling-target motion planning for the Tumblenauts robots, generating stable approach and grasp trajectories under free-floating, unactuated tumble dynamics with no reliable gravity reference frame.
     - bullet: |
         **Beeson Group, Princeton University**<br>
         *Undergraduate Researcher, Advisor: Prof. Ryne Beeson · Aug 2026 to Dec 2026 · Princeton, NJ*
