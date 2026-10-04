@@ -49,10 +49,10 @@ The track has three loops (default, inner, and outer) joined by four motorized t
 - **Route.** The turnouts cycle through three routing patterns (outer loop for 60 s, inner loop for 30 s, back to default for 30 s). Each turnout is thrown by a trickle-charge circuit, where a capacitor and relay let low-power logic signals fire the turnout solenoid, and the four throws are staggered 5 ms apart to avoid a current spike. The capacitor needs time to recharge between throws, which is why the patterns change slowly.
 
 <div class="row mt-3">
-  <div class="col-sm-6 mt-3 mt-md-0">
+  <div class="col-sm-8 mt-3 mt-md-0">
     {% include figure.liquid path="assets/img/projects/railroad/layout_anyrail.jpg" title="Track plan in AnyRail" class="img-fluid rounded z-depth-1" %}
   </div>
-  <div class="col-sm-6 mt-3 mt-md-0">
+  <div class="col-sm-4 mt-3 mt-md-0">
     {% include figure.liquid path="assets/img/projects/railroad/tof_sensor_mount.jpg" title="ToF sensor mount" class="img-fluid rounded z-depth-1" %}
   </div>
 </div>
