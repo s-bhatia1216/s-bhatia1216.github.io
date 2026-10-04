@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Mechanical & Aerospace Engineering at <a href='https://www.princeton.edu/'>Princeton University</a>. Minors in Computer Science and Robotics.
+subtitle: <a href='https://mae.princeton.edu/'>Mechanical & Aerospace Engineering</a> at <a href='https://www.princeton.edu/'>Princeton University</a>. Minors in <a href='https://www.cs.princeton.edu/'>Computer Science</a> and <a href='https://robo.princeton.edu'>Robotics</a>.
 
 profile:
   align: right
@@ -10,6 +10,8 @@ profile:
   image_circular: false # crops the image to make it circular
   more_info: >
     <p>Princeton, NJ</p>
+    <p>School & Research: <a href="mailto:sb7264@princeton.edu">sb7264@princeton.edu</a></p>
+    <p>Everything Else: <a href="mailto:sbhatia1216@gmail.com">sbhatia1216@gmail.com</a></p>
 
 selected_papers: true # lists entries marked selected={true} in _bibliography/papers.bib
 social: true # includes social icons at the bottom of the page
