@@ -1,7 +1,7 @@
 ---
 layout: page
-title: "Constellation Analyzer"
-description: "Browser-based LEO constellation simulator for a 1 GW space data center"
+title: "Orbital Data Centers: 1 GW Constellation Analyzer"
+description: "Feasibility study and live simulator for a gigawatt-scale data center in space"
 importance: 1
 category: space
 ---
