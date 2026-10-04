@@ -45,7 +45,7 @@ NANI is a full-stack IoT system with four parts that talk to each other:
 
 ## My role
 
-I was the project manager and systems engineer. I built the hardware side: wiring the IR beam to the Raspberry Pi, writing the beam-watching code and the FastAPI service that runs it, and setting up the Google Sheets logging pipeline. I also owned integration and testing, making sure a broken beam on the Pi showed up as a logged dose in the app reliably enough to demo live, and wrote the hardware setup guide and system documentation. Yash led the iOS app and the voice AI, including the bilingual interface, the OpenAI integration, and Care Circle messaging.
+Yash and I split the work 50-50 and built every part of NANI together: the Raspberry Pi hardware and beam service, the Google Sheets pipeline, the Node.js voice backend, and the iOS app. We also shared project management, end-to-end testing for the live demo, and documentation.
 
 ## What's next
 
