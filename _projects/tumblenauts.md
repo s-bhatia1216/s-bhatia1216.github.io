@@ -8,10 +8,10 @@ category: robotics
 
 **Aug 2026 to present** &nbsp;|&nbsp; Self-Organizing Swarms & Robotics Lab, Princeton &nbsp;|&nbsp; _Computer vision, 3D tracking, safety filters_
 
-Part of the Tumblenauts project led by Sneha Ramshanker in Prof. Radhika Nagpal's lab. This collision-safety work is in progress and is also my ECE 532 final project.
+I joined the Tumblenauts project, led by PhD candidate Sneha Ramshanker in Prof. Radhika Nagpal's lab, after the original Tumblenauts paper was published. I'm building the ZeroG flight-approved version of the robots, and this collision-safety work, still in progress, is also my ECE 532 final project.
 
 <p>
-  <a class="btn btn-sm z-depth-0" role="button" href="https://doi.org/10.1007/978-3-032-26123-6_20" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-book-open"></i> Tumblenauts paper (ANTS'26)</a>
+  <a class="btn btn-sm z-depth-0" role="button" href="https://doi.org/10.1007/978-3-032-26123-6_20" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-book-open"></i> Original Tumblenauts paper (ANTS'26)</a>
   <a class="btn btn-sm z-depth-0" role="button" href="{{ '/assets/img/projects/tumblenauts/ants26_poster.jpg' | relative_url }}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-image"></i> Poster</a>
 </p>
 
@@ -28,10 +28,10 @@ The Tumblenauts are a swarm of small robots designed to inspect pressurized habi
   </div>
 </div>
 <div class="caption">
-  Left: part of the fleet, each robot wearing AprilTags so cameras can identify it. Right: our ANTS'26 poster (Ramshanker, Bhatia, Alhafnawi, Guffer, and Nagpal).
+  Left: part of the fleet, each robot wearing AprilTags so cameras can identify it. Right: the Tumblenauts poster (Ramshanker, Bhatia, Alhafnawi, Guffer, and Nagpal), which links to the original ANTS'26 paper by the lab.
 </div>
 
-The lab is building a fleet of these robots ahead of a ZeroG parabolic flight in November 2026, which will test them in real microgravity inside a 2 by 2 meter netted area aboard the aircraft.
+My main role is building the ZeroG flight-approved version of the Tumblenauts: a fleet of 6 to 10 robots that will fly on a ZeroG parabolic flight in November 2026 and be tested in real microgravity inside a 2 by 2 meter netted area aboard the aircraft.
 
 ## The problem: random motion in a tight space
 
