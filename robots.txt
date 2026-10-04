@@ -34,8 +34,9 @@ User-agent: Scrapy
 Disallow: /
 
 # Everyone else (search engines): the site is fine to index, but not the
-# CV and resume PDFs, which contain contact details.
+# CV and resume PDFs. Project reports under /assets/pdf/projects/ are fine to index.
 User-agent: *
 Disallow: /assets/pdf/
+Allow: /assets/pdf/projects/
 
 Sitemap: https://s-bhatia1216.github.io/sitemap.xml
