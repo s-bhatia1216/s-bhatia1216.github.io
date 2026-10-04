@@ -30,6 +30,12 @@ With Yash Thakkar
 
 ## How it works
 
+{% include figure.liquid path="assets/img/projects/nani/hardware_setup.jpg" title="NANI hardware at HackPrinceton" class="img-fluid rounded z-depth-1" %}
+
+<div class="caption">
+  The hardware at HackPrinceton: a Raspberry Pi running on a battery pack, wired through a breadboard to an IR break-beam sensor pair mounted at either end of a weekly pill organizer. Opening a day's lid and taking a pill breaks the beam.
+</div>
+
 NANI is a full-stack IoT system with four parts that talk to each other:
 
 - **Pill detection (Raspberry Pi).** An infrared break-beam sensor sits across the medication container. Taking a pill breaks the beam, which the Pi reads on a GPIO pin, debounced so a stray flicker doesn't count as a dose. A small FastAPI service runs the sensor, posts each event to the cloud, and exposes health and start/stop endpoints, and it runs as a system service so it comes back up on its own after a reboot.
