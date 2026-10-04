@@ -9,7 +9,7 @@ description: Teaching, tutoring, and giving back.
 
 Some of my favorite hours have been spent on the other side of the desk. Whether it's a student finally seeing why eigenvectors matter or a new club member launching their first rocket, I love helping people get to the "oh, I get it" moment. Teaching and volunteering have been part of my life since long before college, and they are a big part of why I love working with people.
 
-## Teaching at Princeton
+## **Teaching at Princeton**
 
 #### Undergraduate Course Assistant, Linear Systems (EGR 154)
 
@@ -31,7 +31,7 @@ _Fall 2022 to Fall 2024_
 
 - Taught new members each semester the skills to build their own rockets: CAD in SolidWorks, flight simulation in OpenRocket, composite fabrication, and rocket assembly.
 
-## Before Princeton
+## **Before Princeton**
 
 #### Peer Tutor and Teaching Assistant, St. Andrew's School
 
@@ -49,7 +49,7 @@ _President and Executive Director · Sep 2018 to May 2022_
 - Served as Executive Director of the third and fourth annual St. Andrew's MUN conferences.
 - Led practice sessions for club members, and kept the club running through the pandemic by leading virtual committee sessions.
 
-## Community
+## **Community**
 
 #### Rewriting the Code
 
@@ -76,7 +76,7 @@ _Tour Guide and Head Admissions Ambassador · Oct 2018 to May 2022_
 - Welcomed 70+ prospective families onto campus with personalized tours and information sessions.
 - Represented the school at admissions fairs, both in person and virtually.
 
-## Volunteering
+## **Volunteering**
 
 #### Mentor, St. Andrew's School
 
