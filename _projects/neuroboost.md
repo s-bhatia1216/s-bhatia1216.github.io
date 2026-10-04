@@ -10,10 +10,6 @@ category: ml
 
 With Alecia Barbieri, Ammon Love, Heidi Temple, Ian Fridman, Isa Kessinger, and Kazuki Tojo
 
-<p>
-  <a class="btn btn-sm z-depth-0" role="button" href="{{ '/assets/pdf/projects/neuroboost_paper.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> Final paper</a>
-</p>
-
 Brain activity is usually measured with EEG: a cap of electrodes on the scalp that nobody wears to work. But research has shown that signals you can pick up at the wrist, especially skin conductance (EDA), correlate with what an EEG would show. NeuroBoost is our design for a smartwatch that takes advantage of that: it pairs EDA with the ECG, PPG, and accelerometer sensors found in today's watches, uses machine learning to project EEG-like estimates of a user's cognitive state, and turns them into everyday suggestions for managing stress and focus.
 
 It was a semester-long product design project for a seminar on cyborg psychology, pitched to the class as a startup. The team built a 3D-printed prototype and a full circuit board design, designed the machine learning approach and the app, and planned the clinical trials needed to validate it.

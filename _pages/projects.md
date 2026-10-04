@@ -5,7 +5,7 @@ permalink: /projects/
 description: Things I have built, from 6502 assembly to satellite constellations.
 nav: true
 nav_order: 2
-display_categories: [robotics, systems, ml, space, apps]
+display_categories: [robotics, systems, ml, space, hackathon builds]
 horizontal: false
 ---
 

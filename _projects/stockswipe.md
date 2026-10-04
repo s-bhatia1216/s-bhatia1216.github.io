@@ -3,7 +3,7 @@ layout: page
 title: "StockSwipe"
 description: "Swipe-to-invest stock discovery with Claude-powered analysis"
 importance: 2
-category: apps
+category: hackathon builds
 ---
 
 **Mar 2026** &nbsp;|&nbsp; _React, Vite, Node.js, Anthropic SDK, Yahoo Finance, Finnhub_
