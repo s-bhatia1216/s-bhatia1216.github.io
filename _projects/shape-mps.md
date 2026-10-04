@@ -6,7 +6,7 @@ importance: 2
 category: systems
 ---
 
-> From January - August 2025 & June - August 2026, I worked as an AI Intern in the System Performance Architecture group within Hardware Engineering at Apple Inc. My opinions, repos and other content here are not a reflection of my employers, unless otherwise specified or agreed. I am making my contributions/submissions to the projects in my personal capacity and am not conveying any rights to any intellectual property of any third parties.
+> This project was part of my open-source work during my AI internship in the System Performance Architecture group within Hardware Engineering at Apple Inc. (January - August 2025). The opinions and content on this page are my own and are not a reflection of my employer, unless otherwise specified or agreed. I made this contribution in my personal capacity and am not conveying any rights to any intellectual property of any third parties. All other projects on this site are my own independent work.
 
 **Mar to Jul 2025** &nbsp;|&nbsp; Open-source work at Apple Inc. &nbsp;|&nbsp; _Python, PyTorch MPS, Metal Performance Shaders_
 
