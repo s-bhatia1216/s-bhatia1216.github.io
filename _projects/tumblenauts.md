@@ -39,7 +39,11 @@ Random tumbling keeps the robots simple, but it also makes each robot's future p
 
 ## What I've built: a camera-based 3D tracker
 
-I've built most of the perception pipeline. Five synchronized, static cameras surround the lab's 2 by 2 meter netted arena and identify each robot by its AprilTags as it floats in the air, and I fuse their views into 3D tracks for every robot. Over an 8.5-minute session, each robot was visible to at least one camera 81 to 88% of the time, with blind spots of up to 1.7 seconds.
+I've built most of the perception pipeline. Five static 4K cameras surround the lab's 2 by 2 meter netted arena, and I fuse their views into 3D tracks for every robot as it floats in the air.
+
+- **Synchronizing the cameras.** The five cameras record independently, with no shared clock. I align them to within half a frame (±8.3 ms) using the audio in each recording plus a correction for each camera's clock drift.
+- **Identifying each robot.** I run AprilTag detection over 150,000+ frames to tell every robot apart, and segment the robots themselves with SAM 2.
+- **Measuring coverage.** Over an 8.5-minute session, each robot was visible to at least one camera 81 to 88% of the time, with blind spots of up to 1.7 seconds. Those gaps are exactly what the safety filter has to plan around.
 
 ## What's next: a safety filter
 

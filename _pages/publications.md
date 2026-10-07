@@ -12,10 +12,10 @@ nav_order: 1
 ### Current
 
 **[Self-Organizing Swarms & Robotics (SSR) Lab](https://ssr.princeton.edu/)** · PI: [Prof. Radhika Nagpal](https://www.radhikanagpal.org/) · Aug 2026 to present<br>
-Building the ZeroG flight-approved fleet of Tumblenauts microgravity inspection robots under PhD candidate [Sneha Ramshanker](https://www.sneharamshanker.com/), ahead of a ZeroG parabolic flight test in November 2026.
+Building the ZeroG flight-approved fleet of Tumblenauts microgravity inspection robots under PhD candidate [Sneha Ramshanker](https://www.sneharamshanker.com/), ahead of a ZeroG parabolic flight test in November 2026. I built the multi-camera vision pipeline that tracks the swarm in 3D: five 4K cameras synchronized to within half a frame (±8.3 ms) using audio and clock-drift correction, AprilTag identification over 150,000+ frames, and robot segmentation with SAM 2. See the [Tumblenauts project]({{ '/projects/tumblenauts/' | relative_url }}).
 
 **[Prof. Ryne Beeson](https://mae.princeton.edu/people/faculty/beeson)'s [group](https://beeson.princeton.edu/)** · Aug 2026 to present<br>
-Physics-informed neural networks for tropical cyclone vortex initialization. The network is trained to fit observations and the governing vortex dynamics jointly, with physical constraints built into the loss, to improve on purely data-driven baselines.
+Physics-informed neural networks for tropical cyclone vortex initialization. The network is trained to fit observations and the governing vortex dynamics jointly, with physical constraints built into the loss, to improve on purely data-driven baselines. I found that randomly drawn training points left 34 km gaps across a 25 km eyewall, and replaced them with a deterministic lattice sampled at the Nyquist rate, cutting seed-to-seed variance 5x and vertical-profile roughness 2.5x while holding peak intensity at 94% of the HAFS analysis.
 
 ### Theses and reports
 
