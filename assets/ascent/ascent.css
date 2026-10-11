@@ -1,0 +1,100 @@
+/*
+  Ascent: creative mode styles. Loaded only when creative mode turns on.
+
+  Palette "High altitude": real sky colors by altitude, from launch-pad dawn to
+  low Earth orbit, with ink text that switches to starlight once the sky is dark
+  enough. One warm accent: launch flame. Type: Bricolage Grotesque (display),
+  Spectral (reading), Martian Mono (altitude markers and data).
+*/
+
+.ascent-root {
+  /* Sky stops, 0 km to LEO. */
+  --sky-pad: #fbcd9e;
+  --sky-tropo: #a8cef0;
+  --sky-strato: #3f7fc4;
+  --sky-meso: #3a2e79;
+  --sky-karman: #140f2e;
+  --sky-leo: #05060c;
+  --ink: #14172a;
+  --starlight: #eef0f7;
+  --flame: #ff7a3d;
+  --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --read: "Spectral", Georgia, "Times New Roman", serif;
+  --mono: "Martian Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  position: fixed;
+  inset: 0;
+  z-index: 2147482000;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--sky-pad);
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--read);
+  opacity: 0;
+}
+.ascent-root.ascent-fade {
+  transition: opacity 0.45s ease;
+}
+.ascent-root.is-in {
+  opacity: 1;
+}
+.ascent-root:focus {
+  outline: none;
+}
+
+/* The page underneath doesn't scroll while creative mode covers it. */
+html.ascent-on,
+html.ascent-on body {
+  overflow: hidden;
+}
+
+/* Milestone 2 placeholder: one band per altitude. */
+.ascent-main {
+  display: grid;
+}
+.ascent-band {
+  min-height: 70vh;
+  padding: clamp(56px, 10vw, 120px) max(16px, calc((100% - 960px) / 2));
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+.ascent-band-pad { background: linear-gradient(var(--sky-pad), var(--sky-tropo)); }
+.ascent-band-projects { background: linear-gradient(var(--sky-tropo), #7fb1e2); }
+.ascent-band-research { background: linear-gradient(#7fb1e2, var(--sky-strato)); }
+.ascent-band-people { background: linear-gradient(var(--sky-strato), var(--sky-meso)); color: var(--starlight); }
+.ascent-band-catalog { background: linear-gradient(var(--sky-meso), var(--sky-karman)); color: var(--starlight); }
+.ascent-band-curiosities { background: linear-gradient(var(--sky-karman), var(--sky-leo)); color: var(--starlight); }
+.ascent-band-contact { background: var(--sky-leo); color: var(--starlight); }
+/* Text on the mid-blue band needs starlight to clear 4.5 : 1. */
+.ascent-band-research { color: var(--ink); }
+
+.ascent-alt {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font: 400 11px/1.2 var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.ascent-alt::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+}
+.ascent-h {
+  margin: 0;
+  font: 600 clamp(2rem, 5vw, 3.4rem)/1.05 var(--display);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+h1.ascent-h {
+  font-size: clamp(2.6rem, 8vw, 5.5rem);
+}
+.ascent-p {
+  margin: 0;
+  max-width: 60ch;
+}

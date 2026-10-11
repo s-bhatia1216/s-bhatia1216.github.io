@@ -1,0 +1,88 @@
+/*
+  Ascent mode switch. The only creative-mode styles that load in professional
+  mode. A dark glass pill, readable over both the professional page (light or
+  dark theme) and the creative sky.
+*/
+
+/* Hide the professional page before first paint when creative mode was requested. */
+html.ascent-boot body > *:not(.ascent-switch) {
+  visibility: hidden;
+}
+
+.ascent-switch {
+  position: fixed;
+  left: 16px;
+  bottom: calc(52px + env(safe-area-inset-bottom, 0px));
+  z-index: 2147483000;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 3px;
+  border: 1px solid rgba(238, 240, 247, 0.22);
+  border-radius: 999px;
+  background: rgba(14, 15, 28, 0.84);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 28px -14px rgba(0, 0, 0, 0.6);
+  color: #eef0f7;
+  font: 500 12px/1 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+.ascent-switch-opt {
+  position: relative;
+  z-index: 1;
+  padding: 7px 12px;
+  text-align: center;
+  color: rgba(238, 240, 247, 0.62);
+  transition: color 0.25s ease;
+}
+.ascent-switch-thumb {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  width: calc(50% - 3px);
+  border-radius: 999px;
+  background: #eef0f7;
+  transition: transform 0.35s cubic-bezier(0.6, 0.05, 0.3, 1);
+}
+.ascent-switch[aria-checked="false"] .ascent-switch-opt[data-side="pro"],
+.ascent-switch[aria-checked="true"] .ascent-switch-opt[data-side="cre"] {
+  color: #0e0f1c;
+}
+.ascent-switch[aria-checked="true"] .ascent-switch-thumb {
+  transform: translateX(100%);
+}
+.ascent-switch:hover .ascent-switch-opt {
+  color: rgba(238, 240, 247, 0.9);
+}
+.ascent-switch:hover[aria-checked="false"] .ascent-switch-opt[data-side="pro"],
+.ascent-switch:hover[aria-checked="true"] .ascent-switch-opt[data-side="cre"] {
+  color: #0e0f1c;
+}
+.ascent-switch:focus-visible {
+  outline: 2px solid #ff7a3d;
+  outline-offset: 3px;
+}
+
+@media (max-width: 576px) {
+  .ascent-switch {
+    left: 12px;
+    font-size: 11px;
+  }
+  .ascent-switch-opt {
+    padding: 7px 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ascent-switch-thumb,
+  .ascent-switch-opt {
+    transition: none;
+  }
+}
+@media print {
+  .ascent-switch {
+    display: none;
+  }
+}

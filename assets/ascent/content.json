@@ -1,0 +1,46 @@
+---
+layout: null
+sitemap: false
+---
+{%- comment -%}
+  Ascent content, built by Jekyll on every build. Creative mode reads only this.
+
+  Project titles, blurbs, and links come from _projects/ (the same files the
+  professional Projects page uses); the notebook fields, domains, patches, and
+  catalog come from _data/ascent.yml. Edit those files, never this one.
+{%- endcomment -%}
+{%- assign a = site.data.ascent -%}
+{%- assign sorted = site.projects | sort: "importance" -%}
+{
+  "generated": {{ site.time | date_to_xmlschema | jsonify }},
+  "baseurl": {{ site.baseurl | default: "" | jsonify }},
+  "intro": {{ a.intro | jsonify }},
+  "domains": {{ a.domains | jsonify }},
+  "sections": {{ a.sections | jsonify }},
+  "projects": [
+    {%- for p in sorted -%}
+    {%- assign slug = p.path | split: "/" | last | remove: ".md" -%}
+    {%- assign x = a.projects[slug] -%}
+    {
+      "id": {{ slug | jsonify }},
+      "title": {{ p.title | jsonify }},
+      "blurb": {{ p.description | jsonify }},
+      "url": {{ p.url | relative_url | jsonify }},
+      "importance": {{ p.importance | default: 9 }},
+      "year": {{ x.year | default: "" | jsonify }},
+      "domains": {{ x.domains | jsonify }},
+      "objective": {{ x.objective | jsonify }},
+      "approach": {{ x.approach | jsonify }},
+      "result": {{ x.result | jsonify }},
+      "human": {{ x.human | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ],
+  "research": {{ a.research | jsonify }},
+  "current": {{ a.current | jsonify }},
+  "patches": {{ a.patches | jsonify }},
+  "flightlog": {{ a.flightlog | jsonify }},
+  "honors": {{ a.honors | jsonify }},
+  "curiosities": {{ a.curiosities | jsonify }},
+  "contact": {{ a.contact | jsonify }}
+}
