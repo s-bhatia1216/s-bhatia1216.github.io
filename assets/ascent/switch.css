@@ -113,11 +113,10 @@ html.ascent-boot body > *:not(.ascent-switch) {
   align-items: center;
   gap: 6px;
   margin: 0;
-  padding: 2px 8px 3px;
-  border-radius: 3px;
-  background: rgba(251, 246, 233, 0.94);
-  color: #14172a;
-  box-shadow: 0 3px 8px -4px rgba(0, 0, 0, 0.35);
+  padding: 0;
+  background: none;
+  /* The theme's own text color, so it reads in light and dark themes. */
+  color: var(--global-text-color, #14172a);
   /* System handwriting faces only, so professional mode loads no extra font. */
   font: 500 0.95rem/1.1 "Bradley Hand", "Segoe Print", "Chalkboard SE", "Comic Neue", cursive;
   white-space: nowrap;
