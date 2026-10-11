@@ -19,13 +19,13 @@ https://s-bhatia1216.github.io/?mode=creative
 
 Each fact lives in one place. Edit these files and rebuild; never edit layout code to change content.
 
-| What                                                                         | Where                                                 |
-| ---------------------------------------------------------------------------- | ----------------------------------------------------- |
-| Project titles, blurbs, and full project pages (both modes)                  | `_projects/<name>.md`                                 |
-| Updates                                                                      | `_news/`                                              |
-| Publications on the professional site                                        | `_bibliography/papers.bib`                            |
-| About, resume, research, teaching, CV pages                                  | `_pages/`                                             |
-| Everything only creative mode shows                                          | `_data/ascent.yml`                                    |
+| What                                                        | Where                      |
+| ----------------------------------------------------------- | -------------------------- |
+| Project titles, blurbs, and full project pages (both modes) | `_projects/<name>.md`      |
+| Updates                                                     | `_news/`                   |
+| Publications on the professional site                       | `_bibliography/papers.bib` |
+| About, resume, research, teaching, CV pages                 | `_pages/`                  |
+| Everything only creative mode shows                         | `_data/ascent.yml`         |
 
 `_data/ascent.yml` holds, in order:
 
