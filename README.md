@@ -74,7 +74,6 @@ Push to `main`. The GitHub Actions workflow in `.github/workflows/deploy.yml` bu
 ## Open TODOs
 
 - **Curiosities**: the three entries in `curiosities` are placeholders. The "Questions I'm chasing" list stays hidden until at least one is filled in.
-- **Hero photo**: save the rocket photo as `assets/img/sonal_rocket.jpg`. Until then creative mode shows the profile photo. Keep it under about 300 KB.
 - **"For people" lines**: drafted from the project pages; review the `human` lines in `projects` and on the thesis in `research`.
 - **Claims kept out until confirmed**: MATRIX recognition (outstanding leader, oral presenter), NANI's 98% detection and 99% uptime figures, NeuroBoost model details, and the Tumblenauts tumbling-target motion planner. The PINN cyclone work is shown as in progress with no results.
 - **Publications**: `research` in `_data/ascent.yml` mirrors `papers.bib` by hand.
