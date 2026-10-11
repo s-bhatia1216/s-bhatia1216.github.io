@@ -194,7 +194,8 @@ function people(host, c) {
   const logWrap = el("div", "pp-logwrap");
   logWrap.append(el("h3", "pp-type pp-loghead", "Flight log"));
   const log = el("ol", "pp-log");
-  for (const f of c.flightlog) {
+  // Most recent first; ascent.yml keeps the log in time order.
+  for (const f of [...c.flightlog].reverse()) {
     const li = el("li");
     li.append(el("span", "pp-when", f.when));
     const t = el("div");

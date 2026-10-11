@@ -53,6 +53,12 @@
   color: inherit;
 }
 
+/* Components set display (grid, flex), which would override the hidden
+   attribute; keep hidden meaning hidden everywhere in creative mode. */
+.ascent-root [hidden] {
+  display: none !important;
+}
+
 /* The page underneath doesn't scroll while creative mode covers it. */
 html.ascent-on,
 html.ascent-on body {
