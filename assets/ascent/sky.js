@@ -2,7 +2,7 @@
   Ascent sky engine.
 
   Scrolling is the climb. Each section has an altitude and a sky color for that
-  altitude (ember dawn at the pad, daytime blue, stratospheric blue, mesospheric violet,
+  altitude (a pastel matcha pad, daytime blue, stratospheric blue, mesospheric violet,
   black above the Kármán line). As the reader scrolls, the view's background
   blends between the colors of the section they're in and the next one.
 
@@ -22,7 +22,7 @@ const INK = "#14172a";
 const STARLIGHT = "#eef0f7";
 const FLAME_DARK_SKY = "#ff7a3d"; // on night sky
 const FLAME_LIGHT_SKY = "#b23a0b"; // deeper flame for day skies
-const FLAME_EMBER_SKY = "#fff0d4"; // pale flame for the ember dawn
+const FLAME_EMBER_SKY = "#fff0d4"; // pale flame for warm, deep skies
 
 // ---- color math ---------------------------------------------------------
 const hex = (h) => h.match(/\w\w/g).map((x) => parseInt(x, 16));
@@ -54,8 +54,8 @@ export function palette(sky) {
   while (contrast(soft, bg) < 4.5) soft = mix(soft, text, 0.25);
   // Flame accent: whichever shade reads better on this sky; if neither clears
   // 3 : 1 (the mid-blue stratosphere), accents fall back to the text color.
-  // The orange flames come first; the pale ember flame only steps in on the
-  // ember dawn, where neither orange reads.
+  // The orange flames come first; the pale flame only steps in where
+  // neither orange reads.
   const flame = [FLAME_LIGHT_SKY, FLAME_DARK_SKY].sort((a, b) => contrast(b, bg) - contrast(a, bg))[0];
   const accent = contrast(flame, bg) >= 3 ? flame : contrast(FLAME_EMBER_SKY, bg) >= 3 ? FLAME_EMBER_SKY : text;
   return { bg, text, soft, accent, dark, rule: mix(text, bg, 0.72) };

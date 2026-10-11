@@ -18,13 +18,19 @@ intro:
   name: Sonal Bhatia
   line: Princeton Mechanical & Aerospace Engineering, B.S.E. January 2027. Minors in Computer Science and Robotics.
   thesis: I work at the intersection of control theory, machine learning, and hardware.
+  # The creative hero photo. If this file isn't in the repo yet, the
+  # professional profile photo is used instead.
+  photo: /assets/img/sonal_rocket.jpg
+  photo_alt: Sonal Bhatia at a launch field, holding an orange and black high-power rocket.
+  photo_fallback: /assets/img/sonal_profile.jpg
+  photo_fallback_alt: Sonal Bhatia holding a bound copy of the senior thesis.
 
 # The seven stars of the chart. Order sets their place around the chart.
 domains:
-  - id: astro
-    name: Astrodynamics
   - id: ml
     name: ML and AI
+  - id: astro
+    name: Astrodynamics
   - id: systems
     name: Systems and Computer Architecture
   - id: graphics
@@ -174,6 +180,42 @@ projects:
     approach: Kruskal MST clustering combined with a boosted decision stump.
     result: 98% accuracy on held-out data, tuned for few false negatives.
     human: Missed fraud costs people the most, so the threshold favors catching it.
+
+# Systems and hardware work as a 5-stage pipeline, under the flight notebook.
+# stall: a load-use bubble before this instruction; fwd: a forwarded operand.
+pipeline:
+  - op: LD
+    args: r1, moe_trace
+    note: Apple 2026, load a production LLM mixture-of-experts inference trace
+  - op: PROF
+    args: r2, r1
+    note: find the compute-bound bottleneck
+    stall: true
+  - op: TOOL
+    args: r3, profiler
+    note: internal profiling tooling surfaced 3 more issues
+  - op: OPT
+    args: r4, r2
+    note: 30% faster inference pipeline
+    fwd: true
+  - op: FIX
+    args: "#10"
+    note: shipped fixes for 10 issues across graphics and ML inference
+  - op: QNT
+    args: int8|int4
+    note: Apple 2025, quantized 8 generative models for 44% less memory
+  - op: GEN
+    args: quad_mesh
+    note: on-device 3D generative post-processing pipeline
+  - op: SIM
+    args: rv64i, 5_stage
+    note: my RISC-V simulator, with forwarding and hazard detection
+  - op: JMP
+    args: $6502
+    note: a hand-wired 6502 computer for the Mt. Rainier railroad
+
+# A line about life off duty, from the About page.
+offduty: "Outside of research and work: rockets, hackathons, and building computers from scratch."
 
 # Research, as notebook entries. These mirror _bibliography/papers.bib by hand;
 # update both when you add a paper.

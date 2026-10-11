@@ -103,26 +103,63 @@ html.ascent-boot body > *:not(.ascent-switch) {
   transform: translate(-22px, 2px) rotate(-7deg);
 }
 
-/* First-visit note: handwritten, under the tag. */
-.ascent-switch-hint {
+/* Pointer: a gentle "click here" beside the tag, in professional mode only. */
+.ascent-switch-cue {
   position: fixed;
-  top: calc(var(--ascent-switch-top, 67px) + 62px);
-  right: 22px;
+  top: calc(var(--ascent-switch-top, 67px) + 12px);
+  right: 186px;
   z-index: 2147483000;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   margin: 0;
-  padding: 3px 9px 4px;
-  background: #fbf6e9;
+  padding: 2px 8px 3px;
+  border-radius: 3px;
+  background: rgba(251, 246, 233, 0.94);
   color: #14172a;
-  border-radius: 2px;
-  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 3px 8px -4px rgba(0, 0, 0, 0.35);
   /* System handwriting faces only, so professional mode loads no extra font. */
   font: 500 0.95rem/1.1 "Bradley Hand", "Segoe Print", "Chalkboard SE", "Comic Neue", cursive;
-  transform: rotate(-3deg);
-  pointer-events: none;
   white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
-.ascent-switch-hint::before {
-  content: "\2191  ";
+.ascent-switch-cue.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.ascent-switch-cue svg {
+  width: 28px;
+  height: 12px;
+  fill: none;
+  stroke: #d22a2a;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: ascent-nudge 2.8s ease-in-out infinite;
+}
+.ascent-cue-short {
+  display: none;
+}
+@keyframes ascent-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+
+/* In creative mode the tag docks inside the creative header, clear of content. */
+html.ascent-on .ascent-switch {
+  top: calc(env(safe-area-inset-top, 0px) + 4px);
+}
+html.ascent-on .ascent-switch svg {
+  width: 118px;
+}
+html.ascent-on .ascent-switch-state {
+  display: none;
 }
 
 /* Narrow screens: a smaller tag so it stays clear of the page text. */
@@ -133,15 +170,19 @@ html.ascent-boot body > *:not(.ascent-switch) {
   .ascent-switch-state {
     margin-right: 34px;
   }
-  .ascent-switch-hint {
-    top: calc(var(--ascent-switch-top, 67px) + 50px);
+  .ascent-switch-cue {
+    right: 144px;
+    top: calc(var(--ascent-switch-top, 67px) + 7px);
     font-size: 0.85rem;
   }
 }
-/* Phones: no room for the note beside the page title. */
+/* Phones: a shorter pointer. */
 @media (max-width: 576px) {
-  .ascent-switch-hint {
+  .ascent-cue-long {
     display: none;
+  }
+  .ascent-cue-short {
+    display: inline;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -149,10 +190,13 @@ html.ascent-boot body > *:not(.ascent-switch) {
   .as-pin {
     transition: none;
   }
+  .ascent-switch-cue svg {
+    animation: none;
+  }
 }
 @media print {
   .ascent-switch,
-  .ascent-switch-hint {
+  .ascent-switch-cue {
     display: none;
   }
 }

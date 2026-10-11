@@ -3,7 +3,8 @@
 
   - Renders the mode switch, a REMOVE BEFORE FLIGHT tag drawn in SVG, as a
     real switch (role="switch", aria-checked, native button keyboard handling),
-    top right below the navbar, with a handwritten note on a first visit.
+    top right below the navbar, with a gentle "click here" pointer beside it
+    in professional mode.
   - Remembers the choice in localStorage ("ascent-mode"). ?mode=creative or
     ?mode=professional overrides it, so a resume can link straight in.
   - Imports ascent.js, and with it everything creative, only the first time
@@ -38,6 +39,7 @@
   // The switch is a REMOVE BEFORE FLIGHT tag, the red streamer pinned to an
   // aircraft or rocket on the ground. Pulling it (creative mode) slides the pin
   // out and swings the tag loose; the label underneath names the current mode.
+  let cue = null; // the "click here" pointer, created below
   const PRO = me.dataset.labelPro || "Professional";
   const CRE = me.dataset.labelCre || "Creative";
   const btn = document.createElement("button");
@@ -62,6 +64,7 @@
   const show = (on) => {
     btn.setAttribute("aria-checked", String(on));
     state.textContent = on ? CRE : PRO;
+    if (cue) cue.classList.toggle("is-hidden", on);
   };
   show(false);
   document.body.append(btn);
@@ -72,33 +75,22 @@
     const r = nav && getComputedStyle(nav).position === "fixed" ? nav.getBoundingClientRect() : null;
     const top = `${Math.round((r ? r.bottom : 0) + 10)}px`;
     btn.style.setProperty("--ascent-switch-top", top);
-    if (hint) hint.style.setProperty("--ascent-switch-top", top);
+    if (cue) cue.style.setProperty("--ascent-switch-top", top);
   };
   addEventListener("resize", place, { passive: true });
 
-  // First visit only: a handwritten note under the tag.
-  const HINT = "ascent-hint-seen";
-  let hint = null;
-  let seen = true;
-  try {
-    seen = localStorage.getItem(HINT) === "1";
-  } catch (e) {}
-  if (!seen) {
-    hint = document.createElement("p");
-    hint.className = "ascent-switch-hint";
-    hint.setAttribute("aria-hidden", "true");
-    hint.textContent = "pull it for the creative version";
-    document.body.append(hint);
-  }
+  // In professional mode, a gentle pointer beside the tag says what it does.
+  cue = document.createElement("p");
+  cue.className = "ascent-switch-cue";
+  cue.setAttribute("aria-hidden", "true");
+  const touch = matchMedia("(hover: none)").matches;
+  cue.innerHTML =
+    '<span class="ascent-cue-long"></span><span class="ascent-cue-short"></span>' +
+    '<svg viewBox="0 0 40 16" focusable="false"><path d="M2 9 C 12 3, 24 3, 34 8"/><path d="M28 3 L35 8 L28 12"/></svg>';
+  cue.querySelector(".ascent-cue-long").textContent = `${touch ? "tap" : "click"} here for my ${CRE.toLowerCase()} side`;
+  cue.querySelector(".ascent-cue-short").textContent = `my ${CRE.toLowerCase()} side`;
+  document.body.append(cue);
   place();
-  const dismissHint = () => {
-    if (!hint) return;
-    hint.remove();
-    hint = null;
-    try {
-      localStorage.setItem(HINT, "1");
-    } catch (e) {}
-  };
 
   let mod = null;
   const load = () => (mod ||= import(`${BASE}/assets/ascent/ascent.js?v=${V}`));
@@ -120,7 +112,6 @@
     }));
 
   btn.addEventListener("click", () => {
-    dismissHint();
     creative = !creative;
     store.set(creative ? "creative" : "professional");
     apply(creative, true);

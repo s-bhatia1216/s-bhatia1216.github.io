@@ -11,7 +11,8 @@
   mode restores it byte for byte.
 
   sky.js turns scrolling into the climb (sky color, contrast, starfield, and the
-  altimeter); chart.js draws the star chart at 0 km.
+  altimeter); chart.js draws the star chart at 0 km; sections.js fills every
+  altitude above it.
 */
 
 let root = null;
@@ -29,7 +30,7 @@ function once(base, v) {
     const fonts = document.createElement("link");
     fonts.rel = "stylesheet";
     fonts.href =
-      "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Spectral:ital,wght@0,400;0,500;1,400&family=Martian+Mono:wght@400;500&display=swap";
+      "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Spectral:ital,wght@0,400;0,500;1,400&family=Martian+Mono:wght@400;500&family=Courier+Prime:wght@400;700&display=swap";
     fonts.dataset.ascentFonts = "";
     document.head.append(fonts);
   }
@@ -64,7 +65,7 @@ const el = (tag, cls, text) => {
 
 // Sky color and altitude (km) at the top of each section, pad to downlink.
 const SKY = {
-  pad: ["#c9553f", 0, "#c97a8e"],
+  pad: ["#c9dcb3", 0, "#b4d6d0"],
   projects: ["#a8cef0", 12],
   research: ["#3f7fc4", 50],
   people: ["#3a2e79", 85],
@@ -74,8 +75,7 @@ const SKY = {
 };
 
 // The view: a slim header (name, section links, altimeter) and one section per
-// altitude. Milestone 3 fills the pad with the star chart; the other sections
-// are still placeholders that say what will live there.
+// altitude. The pad holds the hero and star chart; sections.js fills the rest.
 function render(c) {
   const frag = document.createDocumentFragment();
 
@@ -97,14 +97,6 @@ function render(c) {
 
   const main = el("main", "ascent-main");
   main.id = "ascent-main";
-  const counts = {
-    projects: `${c.projects.length} projects as flight notebook entries.`,
-    research: `${c.research.length} research entries and a Lorenz attractor that draws itself.`,
-    people: `${c.patches.length} mission patches and a ${c.flightlog.length}-entry flight log.`,
-    catalog: `${c.research.length + c.honors.length} catalog objects.`,
-    curiosities: "Questions I'm chasing, and a small orbit toy.",
-    contact: "Addresses and the resume PDF.",
-  };
   const bands = [];
   for (const s of c.sections) {
     const band = el("section", `ascent-band ascent-band-${s.id}`);
@@ -116,7 +108,19 @@ function render(c) {
       const hd = el("h1", "ascent-name", c.intro.name);
       hd.id = "ascent-h-pad";
       hero.append(label, hd, el("p", "ascent-lede", c.intro.line), el("p", "ascent-thesis", c.intro.thesis));
-      band.append(hero);
+      const top = el("div", "ascent-top");
+      top.append(hero);
+      if (c.photo) {
+        const fig = el("figure", "ascent-photo");
+        const img = el("img");
+        img.src = c.photo.src;
+        img.alt = c.photo.alt;
+        img.decoding = "async";
+        if (c.photo.fallback) img.addEventListener("error", () => (img.src = c.photo.fallback), { once: true });
+        fig.append(img);
+        top.append(fig);
+      }
+      band.append(top);
       const chartHost = el("div", "ascent-chart-host");
       band.append(chartHost);
       band.append(el("p", "ascent-cue", "Scroll to climb"));
@@ -124,8 +128,9 @@ function render(c) {
     } else {
       const hd = el("h2", "ascent-h", s.title);
       hd.id = `ascent-h-${s.id}`;
-      band.append(label, hd, el("p", "ascent-p", counts[s.id] || ""));
-      bands.push({ id: s.id, el: band });
+      const body = el("div", "ascent-body");
+      band.append(label, hd, body);
+      bands.push({ id: s.id, el: band, body });
     }
     main.append(band);
   }
@@ -146,11 +151,16 @@ function setInert(on) {
 export async function enter({ base = "", v = "", animate = true } = {}) {
   // Sibling modules are imported with the same version stamp, so a deploy
   // never pairs a fresh ascent.js with a stale cached sky.js or chart.js.
-  const [, c, { createSky }, { mountChart }] = await Promise.all([
+  const [, c, { createSky }, { mountChart }, { mountSections }, { lorenzFigure }, { patchSVG }, { orbitToy }, { pipelineFigure }] = await Promise.all([
     once(base, v),
     getContent(base, v),
     import(`./sky.js?v=${v}`),
     import(`./chart.js?v=${v}`),
+    import(`./sections.js?v=${v}`),
+    import(`./lorenz.js?v=${v}`),
+    import(`./patches.js?v=${v}`),
+    import(`./orbit.js?v=${v}`),
+    import(`./pipeline.js?v=${v}`),
   ]);
   if (!root) {
     root = el("div", "ascent-root");
@@ -162,11 +172,13 @@ export async function enter({ base = "", v = "", animate = true } = {}) {
     root.append(frag);
     document.body.append(root);
     mountChart(bands[0].chartHost, c);
+    mountSections(bands, c, { lorenzFigure, patchSVG, orbitToy, pipelineFigure });
     sky = createSky(
       root,
       bands.map((b) => ({ el: b.el, color: SKY[b.id][0], mid: SKY[b.id][2], km: SKY[b.id][1], label: c.sections.find((s) => s.id === b.id) })),
       (km, s) => {
-        alt.textContent = `ALT ${km < 1 ? km.toFixed(1) : Math.round(km)} km · ${s.label.layer}`;
+        alt.textContent = `ALT ${km < 1 ? km.toFixed(1) : Math.round(km)} km`;
+        alt.title = s.label.layer;
       },
     );
     // In-page links scroll the view, not the page underneath.

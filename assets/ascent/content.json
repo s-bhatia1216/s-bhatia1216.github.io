@@ -15,6 +15,13 @@ sitemap: false
   "generated": {{ site.time | date_to_xmlschema | jsonify }},
   "baseurl": {{ site.baseurl | default: "" | jsonify }},
   "intro": {{ a.intro | jsonify }},
+  {%- assign photo_file = site.static_files | where: "path", a.intro.photo | first -%}
+  {%- if photo_file -%}
+  "photo": { "src": {{ a.intro.photo | relative_url | jsonify }}, "alt": {{ a.intro.photo_alt | jsonify }} },
+  {%- else -%}
+  {%- assign fb = a.intro.photo_fallback | replace: ".jpg", "-480.webp" -%}
+  "photo": { "src": {{ fb | relative_url | jsonify }}, "fallback": {{ a.intro.photo_fallback | relative_url | jsonify }}, "alt": {{ a.intro.photo_fallback_alt | jsonify }} },
+  {%- endif -%}
   "domains": {{ a.domains | jsonify }},
   "sections": {{ a.sections | jsonify }},
   "projects": [
@@ -36,6 +43,8 @@ sitemap: false
     }{% unless forloop.last %},{% endunless %}
     {%- endfor -%}
   ],
+  "pipeline": {{ a.pipeline | jsonify }},
+  "offduty": {{ a.offduty | jsonify }},
   "research": {{ a.research | jsonify }},
   "current": {{ a.current | jsonify }},
   "patches": {{ a.patches | jsonify }},
