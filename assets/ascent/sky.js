@@ -14,8 +14,8 @@
   Above the Kármán line, a static starfield fades in. It is drawn once; nothing
   in it moves.
 
-  Output is a handful of CSS custom properties on the view (--sky, --text,
-  --text-soft, --rule, --accent) plus an altitude readout.
+  Output is a handful of CSS custom properties on the view (--sky, --surface,
+  --text, --text-soft, --rule, --accent) plus an altitude readout.
 */
 
 const INK = "#14172a";
@@ -58,7 +58,10 @@ export function palette(sky) {
   // neither orange reads.
   const flame = [FLAME_LIGHT_SKY, FLAME_DARK_SKY].sort((a, b) => contrast(b, bg) - contrast(a, bg))[0];
   const accent = contrast(flame, bg) >= 3 ? flame : contrast(FLAME_EMBER_SKY, bg) >= 3 ? FLAME_EMBER_SKY : text;
-  return { bg, text, soft, accent, dark, rule: mix(text, bg, 0.72) };
+  // Card surfaces step away from the text color, so a card always has at
+  // least the sky's contrast.
+  const surface = mix(bg, dark ? "#000000" : "#ffffff", 0.1);
+  return { bg, text, soft, accent, dark, surface, rule: mix(text, bg, 0.72) };
 }
 
 // ---- engine ---------------------------------------------------------------
@@ -99,6 +102,7 @@ export function createSky(root, sections, onAltitude) {
       st.setProperty("--text-soft", p.soft);
       st.setProperty("--rule", p.rule);
       st.setProperty("--accent", p.accent);
+      st.setProperty("--surface", p.surface);
       root.classList.toggle("is-night", p.dark);
       // Stars appear as the sky darkens past the mesosphere.
       const L = luminance(p.bg);

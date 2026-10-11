@@ -15,6 +15,7 @@
   --text-soft: #3b3a46;
   --rule: rgba(20, 23, 42, 0.25);
   --accent: #b23a0b;
+  --surface: #d4e3c2;
   --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
   --read: "Spectral", Georgia, "Times New Roman", serif;
   --mono: "Martian Mono", ui-monospace, Menlo, Consolas, monospace;
@@ -390,7 +391,7 @@ html.ascent-on body {
   padding: 18px 18px 16px;
   border: 1px solid var(--rule);
   border-radius: 4px;
-  background: color-mix(in srgb, var(--sky) 82%, var(--text) 4%);
+  background: var(--surface);
 }
 .nb-kicker {
   margin: 0;
@@ -870,7 +871,7 @@ html.ascent-on body {
   min-width: 0;
   border: 1px solid var(--rule);
   border-radius: 3px;
-  background: color-mix(in srgb, var(--sky) 92%, var(--text) 8%);
+  background: var(--surface);
 }
 .ct-btn {
   all: unset;

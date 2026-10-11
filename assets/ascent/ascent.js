@@ -79,7 +79,9 @@ const SKY = {
 function render(c) {
   const frag = document.createDocumentFragment();
 
-  const head = el("header", "ascent-head");
+  // A div, not <header>: the view is already a labeled region, so a nested
+  // banner landmark would be misleading.
+  const head = el("div", "ascent-head");
   const home = el("a", "ascent-home", c.intro.name);
   home.href = "#ascent-pad";
   const nav = el("nav", "ascent-nav");
