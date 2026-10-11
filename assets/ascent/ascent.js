@@ -10,11 +10,12 @@
   The professional page's DOM is never edited, only covered, so leaving creative
   mode restores it byte for byte.
 
-  Milestone 2: the view is a placeholder that proves the wiring (content loads,
-  altitude sections listed). The sky, star chart, and sections arrive next.
+  sky.js turns scrolling into the climb (sky color, contrast, starfield, and the
+  altimeter); chart.js draws the star chart at 0 km.
 */
 
 let root = null;
+let sky = null;
 let content = null;
 let inerted = [];
 let prevFocus = null;
@@ -60,31 +61,76 @@ const el = (tag, cls, text) => {
   if (text != null) n.textContent = text;
   return n;
 };
-const isTodo = (s) => !s || /^TODO/i.test(String(s));
 
-// Placeholder view: one band per altitude, with what will live there.
+// Sky color and altitude (km) at the top of each section, pad to downlink.
+const SKY = {
+  pad: ["#fbcd9e", 0, "#f4c6c4"],
+  projects: ["#a8cef0", 12],
+  research: ["#3f7fc4", 50],
+  people: ["#3a2e79", 85],
+  catalog: ["#140f2e", 100],
+  curiosities: ["#05060c", 400],
+  contact: ["#05060c", 400],
+};
+
+// The view: a slim header (name, section links, altimeter) and one section per
+// altitude. Milestone 3 fills the pad with the star chart; the other sections
+// are still placeholders that say what will live there.
 function render(c) {
+  const frag = document.createDocumentFragment();
+
+  const head = el("header", "ascent-head");
+  const home = el("a", "ascent-home", c.intro.name);
+  home.href = "#ascent-pad";
+  const nav = el("nav", "ascent-nav");
+  nav.setAttribute("aria-label", "Creative mode sections");
+  for (const s of c.sections) {
+    if (s.id === "pad") continue;
+    const a = el("a", null, s.title);
+    a.href = `#ascent-${s.id}`;
+    nav.append(a);
+  }
+  const alt = el("p", "ascent-altimeter");
+  alt.setAttribute("aria-hidden", "true");
+  head.append(home, nav, alt);
+  frag.append(head);
+
   const main = el("main", "ascent-main");
   main.id = "ascent-main";
   const counts = {
-    projects: `${c.projects.length} projects as flight notebook entries`,
-    research: `${c.research.length} research entries and the Lorenz figure`,
-    people: `${c.patches.length} mission patches and a ${c.flightlog.length}-entry flight log`,
-    catalog: `${c.research.length + c.honors.length} catalog objects`,
-    curiosities: `${c.curiosities.filter((q) => !isTodo(q.question)).length} questions so far, plus the orbit toy`,
-    contact: `${c.contact.emails.length} addresses and the resume PDF`,
+    projects: `${c.projects.length} projects as flight notebook entries.`,
+    research: `${c.research.length} research entries and a Lorenz attractor that draws itself.`,
+    people: `${c.patches.length} mission patches and a ${c.flightlog.length}-entry flight log.`,
+    catalog: `${c.research.length + c.honors.length} catalog objects.`,
+    curiosities: "Questions I'm chasing, and a small orbit toy.",
+    contact: "Addresses and the resume PDF.",
   };
+  const bands = [];
   for (const s of c.sections) {
     const band = el("section", `ascent-band ascent-band-${s.id}`);
+    band.id = `ascent-${s.id}`;
     band.setAttribute("aria-labelledby", `ascent-h-${s.id}`);
-    band.append(el("p", "ascent-alt", `${s.altitude} · ${s.layer}`));
-    const hd = el(s.id === "pad" ? "h1" : "h2", "ascent-h", s.id === "pad" ? c.intro.name : s.title);
-    hd.id = `ascent-h-${s.id}`;
-    band.append(hd);
-    band.append(el("p", "ascent-p", s.id === "pad" ? `${c.intro.line} ${c.intro.thesis}` : counts[s.id] || ""));
+    const label = el("p", "ascent-alt", `${s.altitude} · ${s.layer}`);
+    if (s.id === "pad") {
+      const hero = el("div", "ascent-hero");
+      const hd = el("h1", "ascent-name", c.intro.name);
+      hd.id = "ascent-h-pad";
+      hero.append(label, hd, el("p", "ascent-lede", c.intro.line), el("p", "ascent-thesis", c.intro.thesis));
+      band.append(hero);
+      const chartHost = el("div", "ascent-chart-host");
+      band.append(chartHost);
+      band.append(el("p", "ascent-cue", "Scroll to climb"));
+      bands.push({ id: s.id, el: band, chartHost });
+    } else {
+      const hd = el("h2", "ascent-h", s.title);
+      hd.id = `ascent-h-${s.id}`;
+      band.append(label, hd, el("p", "ascent-p", counts[s.id] || ""));
+      bands.push({ id: s.id, el: band });
+    }
     main.append(band);
   }
-  return main;
+  frag.append(main);
+  return { frag, bands, alt };
 }
 
 function setInert(on) {
@@ -98,15 +144,40 @@ function setInert(on) {
 }
 
 export async function enter({ base = "", v = "", animate = true } = {}) {
-  const [, c] = await Promise.all([once(base, v), getContent(base, v)]);
+  // Sibling modules are imported with the same version stamp, so a deploy
+  // never pairs a fresh ascent.js with a stale cached sky.js or chart.js.
+  const [, c, { createSky }, { mountChart }] = await Promise.all([
+    once(base, v),
+    getContent(base, v),
+    import(`./sky.js?v=${v}`),
+    import(`./chart.js?v=${v}`),
+  ]);
   if (!root) {
     root = el("div", "ascent-root");
     root.id = "ascent-root";
     root.setAttribute("role", "region");
     root.setAttribute("aria-label", "Creative mode");
     root.tabIndex = -1;
-    root.append(render(c));
+    const { frag, bands, alt } = render(c);
+    root.append(frag);
     document.body.append(root);
+    mountChart(bands[0].chartHost, c);
+    sky = createSky(
+      root,
+      bands.map((b) => ({ el: b.el, color: SKY[b.id][0], mid: SKY[b.id][2], km: SKY[b.id][1], label: c.sections.find((s) => s.id === b.id) })),
+      (km, s) => {
+        alt.textContent = `ALT ${km < 1 ? km.toFixed(1) : Math.round(km)} km · ${s.label.layer}`;
+      },
+    );
+    // In-page links scroll the view, not the page underneath.
+    root.addEventListener("click", (e) => {
+      const a = e.target.closest('a[href^="#ascent-"]');
+      if (!a) return;
+      const t = root.querySelector(a.getAttribute("href"));
+      if (!t) return;
+      e.preventDefault();
+      t.scrollIntoView({ behavior: reducedMotion() ? "auto" : "smooth" });
+    });
   }
   root.hidden = false;
   prevFocus = document.activeElement;

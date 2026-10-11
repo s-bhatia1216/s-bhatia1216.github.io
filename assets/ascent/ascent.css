@@ -1,26 +1,24 @@
 /*
   Ascent: creative mode styles. Loaded only when creative mode turns on.
 
-  Palette "High altitude": real sky colors by altitude, from launch-pad dawn to
-  low Earth orbit, with ink text that switches to starlight once the sky is dark
-  enough. One warm accent: launch flame. Type: Bricolage Grotesque (display),
-  Spectral (reading), Martian Mono (altitude markers and data).
+  Palette "High altitude": the view's background is set continuously by sky.js
+  from real sky colors by altitude (--sky), with text that switches between ink
+  and starlight to stay at WCAG AA (--text, --text-soft), hairline rules
+  (--rule), and one warm accent, launch flame (--accent).
+  Type: Bricolage Grotesque (display), Spectral (reading), Martian Mono (labels,
+  altitude markers, data).
 */
 
 .ascent-root {
-  /* Sky stops, 0 km to LEO. */
-  --sky-pad: #fbcd9e;
-  --sky-tropo: #a8cef0;
-  --sky-strato: #3f7fc4;
-  --sky-meso: #3a2e79;
-  --sky-karman: #140f2e;
-  --sky-leo: #05060c;
-  --ink: #14172a;
-  --starlight: #eef0f7;
-  --flame: #ff7a3d;
+  --sky: #fbcd9e;
+  --text: #14172a;
+  --text-soft: #3b3a46;
+  --rule: rgba(20, 23, 42, 0.25);
+  --accent: #b23a0b;
   --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
   --read: "Spectral", Georgia, "Times New Roman", serif;
   --mono: "Martian Mono", ui-monospace, Menlo, Consolas, monospace;
+  --gutter: max(16px, calc((100% - 1120px) / 2));
 
   position: fixed;
   inset: 0;
@@ -28,19 +26,30 @@
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
-  background: var(--sky-pad);
-  color: var(--ink);
+  background: var(--sky);
+  color: var(--text);
   font: 400 1.0625rem/1.6 var(--read);
   opacity: 0;
+  transition: color 0.4s ease;
 }
 .ascent-root.ascent-fade {
-  transition: opacity 0.45s ease;
+  transition:
+    opacity 0.45s ease,
+    color 0.4s ease;
 }
 .ascent-root.is-in {
   opacity: 1;
 }
 .ascent-root:focus {
   outline: none;
+}
+.ascent-root :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.ascent-root a,
+.ascent-root :is(h1, h2, h3, h4, h5, h6, p, li, dt, dd, span, strong, em) {
+  color: inherit;
 }
 
 /* The page underneath doesn't scroll while creative mode covers it. */
@@ -49,27 +58,76 @@ html.ascent-on body {
   overflow: hidden;
 }
 
-/* Milestone 2 placeholder: one band per altitude. */
-.ascent-main {
-  display: grid;
+/* Starfield: fixed behind everything, fades in above the mesosphere. */
+.ascent-stars {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.3s linear;
 }
+.ascent-head,
+.ascent-main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- header ---------------------------------------------------------- */
+.ascent-head {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 28px;
+  padding: calc(14px + env(safe-area-inset-top, 0px)) var(--gutter) 12px;
+  background: color-mix(in srgb, var(--sky) 86%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--rule);
+  font: 400 11px/1.3 var(--mono);
+  letter-spacing: 0.08em;
+}
+.ascent-home {
+  font: 600 1rem/1 var(--display);
+  letter-spacing: 0;
+  text-decoration: none;
+}
+.ascent-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  text-transform: uppercase;
+}
+.ascent-nav a {
+  text-decoration: none;
+  color: var(--text-soft);
+}
+.ascent-nav a:hover {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.ascent-altimeter {
+  margin: 0 0 0 auto;
+  font-variant-numeric: tabular-nums;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  white-space: nowrap;
+}
+
+/* ---- sections ---------------------------------------------------------- */
 .ascent-band {
   min-height: 70vh;
-  padding: clamp(56px, 10vw, 120px) max(16px, calc((100% - 960px) / 2));
+  padding: clamp(56px, 9vw, 112px) var(--gutter);
   display: grid;
   align-content: start;
   gap: 14px;
+  scroll-margin-top: 48px;
 }
-.ascent-band-pad { background: linear-gradient(var(--sky-pad), var(--sky-tropo)); }
-.ascent-band-projects { background: linear-gradient(var(--sky-tropo), #7fb1e2); }
-.ascent-band-research { background: linear-gradient(#7fb1e2, var(--sky-strato)); }
-.ascent-band-people { background: linear-gradient(var(--sky-strato), var(--sky-meso)); color: var(--starlight); }
-.ascent-band-catalog { background: linear-gradient(var(--sky-meso), var(--sky-karman)); color: var(--starlight); }
-.ascent-band-curiosities { background: linear-gradient(var(--sky-karman), var(--sky-leo)); color: var(--starlight); }
-.ascent-band-contact { background: var(--sky-leo); color: var(--starlight); }
-/* Text on the mid-blue band needs starlight to clear 4.5 : 1. */
-.ascent-band-research { color: var(--ink); }
-
 .ascent-alt {
   margin: 0;
   display: flex;
@@ -78,6 +136,7 @@ html.ascent-on body {
   font: 400 11px/1.2 var(--mono);
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  color: var(--text-soft);
 }
 .ascent-alt::before {
   content: "";
@@ -91,10 +150,345 @@ html.ascent-on body {
   letter-spacing: -0.01em;
   text-wrap: balance;
 }
-h1.ascent-h {
-  font-size: clamp(2.6rem, 8vw, 5.5rem);
-}
 .ascent-p {
   margin: 0;
   max-width: 60ch;
+  color: var(--text-soft);
+}
+
+/* ---- pad: hero and star chart -------------------------------------------- */
+.ascent-band-pad {
+  min-height: 0;
+  padding-top: clamp(40px, 6vw, 72px);
+  gap: clamp(20px, 3vw, 32px);
+}
+.ascent-hero {
+  display: grid;
+  gap: 10px;
+  max-width: 62ch;
+}
+.ascent-name {
+  margin: 0;
+  font: 650 clamp(2.8rem, 8vw, 5.6rem)/0.95 var(--display);
+  letter-spacing: -0.025em;
+}
+.ascent-lede,
+.ascent-thesis {
+  margin: 0;
+}
+.ascent-thesis {
+  font-style: italic;
+  font-size: 1.2rem;
+}
+.ascent-cue {
+  margin: 0;
+  font: 400 11px/1 var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+.ascent-cue::after {
+  content: " \2193";
+  color: var(--accent);
+}
+
+.chart {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 3.4fr);
+  gap: clamp(16px, 3vw, 32px);
+  align-items: start;
+}
+.chart-plate {
+  margin: 0;
+  min-width: 0;
+}
+.chart-plate svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* Plate furniture */
+.chart-grid line,
+.chart-frame {
+  stroke: var(--text);
+  stroke-width: 1;
+  fill: none;
+  opacity: 0.35;
+}
+.chart-dec,
+.chart-ra {
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 0.75;
+  opacity: 0.14;
+}
+.chart-dec {
+  stroke-dasharray: 2 6;
+  opacity: 0.22;
+}
+.chart-corner {
+  fill: var(--text-soft);
+  font: 400 10px var(--mono);
+  letter-spacing: 0.14em;
+}
+
+/* Lines */
+.chart-link {
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 1;
+  opacity: 0.42;
+  transition:
+    opacity 0.2s ease,
+    stroke 0.2s ease;
+}
+.is-tracing .chart-link {
+  opacity: 0.08;
+}
+.is-tracing .chart-link.is-lit {
+  opacity: 1;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+}
+
+/* Stars and bodies */
+.chart-node {
+  cursor: pointer;
+  outline: none;
+}
+.chart-hit {
+  fill: transparent;
+}
+.chart-glint {
+  fill: var(--text);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: chart-twinkle 6.5s ease-in-out infinite;
+}
+.chart-core {
+  fill: var(--text);
+}
+.chart-dlabel {
+  fill: var(--text);
+  font: 500 10.5px var(--mono);
+  letter-spacing: 0.12em;
+}
+.chart-ring {
+  fill: var(--sky);
+  stroke: var(--text);
+  stroke-width: 1;
+}
+.chart-dot {
+  fill: var(--text);
+}
+.chart-node,
+.chart-node * {
+  transition:
+    opacity 0.2s ease,
+    fill 0.2s ease,
+    stroke 0.2s ease;
+}
+.is-tracing .chart-node {
+  opacity: 0.32;
+}
+.is-tracing .chart-node.is-lit {
+  opacity: 1;
+}
+.chart-node.is-lit .chart-glint,
+.chart-node.is-lit .chart-core,
+.chart-node.is-lit .chart-dot {
+  fill: var(--accent);
+}
+.chart-node.is-lit .chart-ring,
+.chart-node.is-selected .chart-ring {
+  stroke: var(--accent);
+  stroke-width: 1.6;
+}
+.chart-node.is-selected .chart-dot {
+  fill: var(--accent);
+}
+.chart-node:focus-visible .chart-hit {
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 3;
+}
+@keyframes chart-twinkle {
+  0%,
+  100% {
+    opacity: 0.95;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(0.82);
+  }
+}
+
+/* Floating label */
+.chart-tag {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.chart-tag.is-on {
+  opacity: 1;
+}
+.chart-tag rect {
+  fill: var(--text);
+}
+.chart-tag text {
+  fill: var(--sky);
+  font: 500 12px var(--mono);
+}
+
+/* ---- notebook card (shared with later sections) -------------------------- */
+.chart-card {
+  min-width: 0;
+  position: sticky;
+  top: 72px;
+}
+.nb-card,
+.chart-card > .nb-kicker {
+  margin: 0;
+}
+.nb-card {
+  display: grid;
+  gap: 10px;
+  padding: 18px 18px 16px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--sky) 82%, var(--text) 4%);
+}
+.nb-kicker {
+  margin: 0;
+  font: 400 10.5px/1.5 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+.nb-title {
+  margin: 0;
+  font: 600 1.3rem/1.15 var(--display);
+  text-wrap: balance;
+}
+.nb-fields {
+  margin: 0;
+  display: grid;
+  gap: 4px;
+}
+.nb-fields dt {
+  margin-top: 6px;
+  font: 400 10px/1.4 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+.nb-fields dd {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+.nb-human {
+  font-style: italic;
+}
+.nb-link {
+  justify-self: start;
+  font: 500 11px/1 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--accent);
+}
+.nb-link::after {
+  content: " \2192";
+}
+.chart-howto {
+  margin: 8px 0 0;
+  color: var(--text-soft);
+}
+.chart-domain-list {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+.chart-domain-btn,
+.chart-list-btn {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.chart-domain-btn {
+  padding: 4px 0;
+  border-bottom: 1px solid var(--rule);
+  display: block;
+  width: 100%;
+}
+.chart-domain-btn:hover {
+  color: var(--accent);
+}
+.chart-domain-btn:focus-visible,
+.chart-list-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Mobile fallback list (hidden while the chart fits) */
+.chart-list {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.chart-list-btn {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.chart-list-title {
+  font: 600 1.05rem/1.25 var(--display);
+}
+.chart-list-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.chart-tag-pill {
+  font: 400 10px/1 var(--mono);
+  letter-spacing: 0.06em;
+  padding: 4px 7px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+}
+
+@media (max-width: 720px) {
+  .chart {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .chart-plate {
+    display: none;
+  }
+  .chart-list {
+    display: block;
+  }
+  .chart-card {
+    position: static;
+  }
+  .ascent-nav {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ascent-root,
+  .ascent-root * {
+    transition: none !important;
+    animation: none !important;
+  }
 }
