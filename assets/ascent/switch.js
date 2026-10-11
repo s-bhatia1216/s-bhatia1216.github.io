@@ -1,9 +1,9 @@
 /*
   Ascent mode switch. Loaded (deferred) on every page and kept tiny.
 
-  - Renders the mode switch, a guarded cockpit toggle drawn in SVG, as a real
-    switch (role="switch", aria-checked, native button keyboard handling), with
-    a handwritten "lift the guard" tag on a visitor's first visit.
+  - Renders the mode switch, a REMOVE BEFORE FLIGHT tag drawn in SVG, as a
+    real switch (role="switch", aria-checked, native button keyboard handling),
+    top right below the navbar, with a handwritten note on a first visit.
   - Remembers the choice in localStorage ("ascent-mode"). ?mode=creative or
     ?mode=professional overrides it, so a resume can link straight in.
   - Imports ascent.js, and with it everything creative, only the first time
@@ -35,9 +35,9 @@
   if (param === "creative" || param === "professional") store.set(param);
   let creative = (param || store.get()) === "creative";
 
-  // The switch is a cockpit toggle under a red safety guard. Turning creative
-  // mode on flips the guard open, throws the toggle, and lights the lamp. The
-  // label underneath names the current mode.
+  // The switch is a REMOVE BEFORE FLIGHT tag, the red streamer pinned to an
+  // aircraft or rocket on the ground. Pulling it (creative mode) slides the pin
+  // out and swings the tag loose; the label underneath names the current mode.
   const PRO = me.dataset.labelPro || "Professional";
   const CRE = me.dataset.labelCre || "Creative";
   const btn = document.createElement("button");
@@ -47,14 +47,15 @@
   btn.setAttribute("aria-label", `${CRE} mode`);
   btn.setAttribute("aria-checked", "false");
   btn.innerHTML =
-    '<svg viewBox="0 0 86 110" aria-hidden="true" focusable="false">' +
-    '<rect class="as-plate" x="8" y="10" width="70" height="92" rx="6"/>' +
-    '<circle class="as-screw" cx="16" cy="18" r="2.4"/><circle class="as-screw" cx="70" cy="18" r="2.4"/>' +
-    '<circle class="as-screw" cx="16" cy="94" r="2.4"/><circle class="as-screw" cx="70" cy="94" r="2.4"/>' +
-    '<circle class="as-lamp" cx="43" cy="92" r="5"/>' +
-    '<circle class="as-base" cx="43" cy="64" r="9"/>' +
-    '<g class="as-bat"><rect x="39.5" y="34" width="7" height="31" rx="3.5"/></g>' +
-    '<g class="as-guard"><rect x="22" y="28" width="42" height="50" rx="5"/><line x1="30" y1="36" x2="56" y2="36"/></g>' +
+    '<svg viewBox="0 0 216 52" aria-hidden="true" focusable="false">' +
+    '<rect class="as-socket" x="200" y="18" width="14" height="16" rx="3"/>' +
+    '<g class="as-pin"><rect x="176" y="23" width="32" height="6" rx="3"/><circle cx="176" cy="26" r="7"/></g>' +
+    '<g class="as-tag">' +
+    '<rect class="as-cloth" x="4" y="6" width="160" height="40" rx="2.5"/>' +
+    '<rect class="as-stitch" x="8.5" y="10.5" width="151" height="31" rx="1.5"/>' +
+    '<text class="as-words" x="16" y="30.5" textLength="136" lengthAdjust="spacingAndGlyphs">REMOVE BEFORE FLIGHT</text>' +
+    '<circle class="as-grommet" cx="166" cy="26" r="5.5"/>' +
+    "</g>" +
     "</svg>" +
     '<span class="ascent-switch-state"></span>';
   const state = btn.querySelector(".ascent-switch-state");
@@ -65,7 +66,17 @@
   show(false);
   document.body.append(btn);
 
-  // First visit only: a handwritten tag pointing at the switch.
+  // Sit just below the theme's fixed navbar, whatever its height.
+  const place = () => {
+    const nav = document.getElementById("navbar");
+    const r = nav && getComputedStyle(nav).position === "fixed" ? nav.getBoundingClientRect() : null;
+    const top = `${Math.round((r ? r.bottom : 0) + 10)}px`;
+    btn.style.setProperty("--ascent-switch-top", top);
+    if (hint) hint.style.setProperty("--ascent-switch-top", top);
+  };
+  addEventListener("resize", place, { passive: true });
+
+  // First visit only: a handwritten note under the tag.
   const HINT = "ascent-hint-seen";
   let hint = null;
   let seen = true;
@@ -76,9 +87,10 @@
     hint = document.createElement("p");
     hint.className = "ascent-switch-hint";
     hint.setAttribute("aria-hidden", "true");
-    hint.textContent = "lift the guard";
+    hint.textContent = "pull it for the creative version";
     document.body.append(hint);
   }
+  place();
   const dismissHint = () => {
     if (!hint) return;
     hint.remove();

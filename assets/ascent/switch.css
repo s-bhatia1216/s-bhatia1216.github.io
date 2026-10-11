@@ -1,8 +1,8 @@
 /*
-  Ascent mode switch: a guarded cockpit toggle. The only creative-mode styles
-  that load in professional mode. The switch plate is dark metal with its own
-  colors, so it reads over the professional page (light or dark theme) and over
-  every color of the creative sky.
+  Ascent mode switch: a REMOVE BEFORE FLIGHT tag, top right below the navbar.
+  The only creative-mode styles that load in professional mode. The tag carries
+  its own colors (flight-line red, white lettering, steel pin), so it reads
+  over the professional page in either theme and over every color of the sky.
 */
 
 /* Hide the professional page before first paint when creative mode was requested. */
@@ -12,33 +12,33 @@ html.ascent-boot body > *:not(.ascent-switch) {
 
 .ascent-switch {
   position: fixed;
-  left: 14px;
-  bottom: calc(50px + env(safe-area-inset-bottom, 0px));
+  top: var(--ascent-switch-top, 67px);
+  right: 10px;
   z-index: 2147483000;
   display: grid;
-  justify-items: center;
-  gap: 3px;
+  justify-items: end;
+  gap: 2px;
   margin: 0;
   padding: 4px;
   border: 0;
-  border-radius: 8px;
+  border-radius: 6px;
   background: none;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
 .ascent-switch svg {
   display: block;
-  width: 50px;
-  height: 64px;
+  width: 160px;
+  height: auto;
   overflow: visible;
-  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35));
 }
 .ascent-switch-state {
+  margin-right: 46px;
   padding: 3px 6px;
   border-radius: 3px;
   background: rgba(20, 22, 32, 0.86);
   color: #eef0f7;
-  font: 500 9.5px/1 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font: 500 9px/1 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -48,102 +48,105 @@ html.ascent-boot body > *:not(.ascent-switch) {
 }
 
 /* The hardware */
-.as-plate {
+.as-socket {
+  fill: #3a3d48;
+}
+.as-pin rect,
+.as-pin circle {
+  fill: none;
+  stroke: #b9bdc7;
+  stroke-width: 2.5;
+}
+.as-pin rect {
+  fill: #b9bdc7;
+  stroke: none;
+}
+.as-cloth {
+  fill: #d22a2a;
+}
+.as-stitch {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.45);
+  stroke-width: 1;
+  stroke-dasharray: 3 2.5;
+}
+.as-words {
+  fill: #ffffff;
+  font: 800 12px/1 "Helvetica Neue", Arial, system-ui, sans-serif;
+}
+.as-grommet {
   fill: #2a2d38;
-  stroke: #12131a;
-  stroke-width: 2;
+  stroke: #c9ccd4;
+  stroke-width: 2.5;
 }
-.as-screw {
-  fill: #8d919c;
+.as-tag {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+  transform-origin: 166px 26px;
+  transition: transform 0.5s cubic-bezier(0.6, 0.05, 0.3, 1.35);
 }
-.as-base {
-  fill: #6f7380;
-}
-.as-lamp {
-  fill: #3b3e4a;
-  stroke: #12131a;
-  stroke-width: 1.5;
-  transition: fill 0.3s ease 0.15s;
-}
-.as-bat {
-  transform-origin: 43px 64px;
-  transition: transform 0.45s cubic-bezier(0.6, 0.05, 0.3, 1.4) 0.1s;
-}
-.as-bat rect {
-  fill: #c9ccd4;
-  stroke: #12131a;
-  stroke-width: 1.5;
-}
-.as-guard {
-  transform-origin: 43px 28px;
-  transition: transform 0.5s cubic-bezier(0.6, 0.05, 0.3, 1.3);
-}
-.as-guard rect {
-  fill: #c8322b;
-  fill-opacity: 0.92;
-  stroke: #5d1310;
-  stroke-width: 1.5;
-}
-.as-guard line {
-  stroke: rgba(255, 255, 255, 0.35);
-  stroke-width: 2;
+.as-pin {
+  transition: transform 0.45s cubic-bezier(0.6, 0.05, 0.3, 1.2);
 }
 
-/* Hover lifts the guard a little; on, the guard flips open, the toggle throws, the lamp lights. */
-.ascent-switch:hover .as-guard,
-.ascent-switch:focus-visible .as-guard {
-  transform: translateY(-8px) scaleY(0.82);
+/* Hover: the tag sways on its ring. On: the pin slides out and the tag swings loose. */
+.ascent-switch:hover .as-tag,
+.ascent-switch:focus-visible .as-tag {
+  transform: rotate(-4deg);
 }
-.ascent-switch[aria-checked="true"] .as-guard {
-  transform: translateY(-34px) scaleY(0.35);
+.ascent-switch[aria-checked="true"] .as-pin {
+  transform: translateX(-22px);
 }
-.ascent-switch[aria-checked="true"] .as-bat {
-  transform: rotate(180deg);
+.ascent-switch[aria-checked="true"] .as-tag {
+  transform: translate(-22px, 2px) rotate(-11deg);
 }
-.ascent-switch[aria-checked="true"] .as-lamp {
-  fill: #ff7a3d;
+.ascent-switch[aria-checked="true"]:hover .as-tag {
+  transform: translate(-22px, 2px) rotate(-7deg);
 }
 
-/* First-visit hint: a handwritten paper tag beside the switch. */
+/* First-visit note: handwritten, under the tag. */
 .ascent-switch-hint {
   position: fixed;
-  left: 74px;
-  bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  top: calc(var(--ascent-switch-top, 67px) + 62px);
+  right: 22px;
   z-index: 2147483000;
   margin: 0;
-  padding: 3px 10px 4px;
+  padding: 3px 9px 4px;
   background: #fbf6e9;
   color: #14172a;
   border-radius: 2px;
   box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.4);
   /* System handwriting faces only, so professional mode loads no extra font. */
-  font: 500 1.05rem/1.1 "Bradley Hand", "Segoe Print", "Chalkboard SE", "Comic Neue", cursive;
-  transform: rotate(-5deg);
+  font: 500 0.95rem/1.1 "Bradley Hand", "Segoe Print", "Chalkboard SE", "Comic Neue", cursive;
+  transform: rotate(-3deg);
   pointer-events: none;
   white-space: nowrap;
 }
 .ascent-switch-hint::before {
-  content: "\2190  ";
+  content: "\2191  ";
 }
 
-@media (max-width: 576px) {
-  .ascent-switch {
-    left: 8px;
-  }
+/* Narrow screens: a smaller tag so it stays clear of the page text. */
+@media (max-width: 1199px) {
   .ascent-switch svg {
-    width: 42px;
-    height: 54px;
+    width: 118px;
+  }
+  .ascent-switch-state {
+    margin-right: 34px;
   }
   .ascent-switch-hint {
-    left: 60px;
-    bottom: calc(88px + env(safe-area-inset-bottom, 0px));
-    font-size: 0.95rem;
+    top: calc(var(--ascent-switch-top, 67px) + 50px);
+    font-size: 0.85rem;
+  }
+}
+/* Phones: no room for the note beside the page title. */
+@media (max-width: 576px) {
+  .ascent-switch-hint {
+    display: none;
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .as-guard,
-  .as-bat,
-  .as-lamp {
+  .as-tag,
+  .as-pin {
     transition: none;
   }
 }
