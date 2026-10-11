@@ -1,7 +1,7 @@
 /*
   Ascent: creative mode styles. Loaded only when creative mode turns on.
 
-  Palette "High altitude": the view's background is set continuously by sky.js
+  Palette "High altitude" with an ember dawn at the pad: the view's background is set continuously by sky.js
   from real sky colors by altitude (--sky), with text that switches between ink
   and starlight to stay at WCAG AA (--text, --text-soft), hairline rules
   (--rule), and one warm accent, launch flame (--accent).
@@ -10,7 +10,7 @@
 */
 
 .ascent-root {
-  --sky: #fbcd9e;
+  --sky: #d0654f;
   --text: #14172a;
   --text-soft: #3b3a46;
   --rule: rgba(20, 23, 42, 0.25);

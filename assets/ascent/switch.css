@@ -1,7 +1,8 @@
 /*
-  Ascent mode switch. The only creative-mode styles that load in professional
-  mode. A dark glass pill, readable over both the professional page (light or
-  dark theme) and the creative sky.
+  Ascent mode switch: a guarded cockpit toggle. The only creative-mode styles
+  that load in professional mode. The switch plate is dark metal with its own
+  colors, so it reads over the professional page (light or dark theme) and over
+  every color of the creative sky.
 */
 
 /* Hide the professional page before first paint when creative mode was requested. */
@@ -11,78 +12,144 @@ html.ascent-boot body > *:not(.ascent-switch) {
 
 .ascent-switch {
   position: fixed;
-  left: 16px;
-  bottom: calc(52px + env(safe-area-inset-bottom, 0px));
+  left: 14px;
+  bottom: calc(50px + env(safe-area-inset-bottom, 0px));
   z-index: 2147483000;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  padding: 3px;
-  border: 1px solid rgba(238, 240, 247, 0.22);
-  border-radius: 999px;
-  background: rgba(14, 15, 28, 0.84);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 10px 28px -14px rgba(0, 0, 0, 0.6);
-  color: #eef0f7;
-  font: 500 12px/1 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-  letter-spacing: 0.06em;
+  justify-items: center;
+  gap: 3px;
+  margin: 0;
+  padding: 4px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
-.ascent-switch-opt {
-  position: relative;
-  z-index: 1;
-  padding: 7px 12px;
-  text-align: center;
-  color: rgba(238, 240, 247, 0.62);
-  transition: color 0.25s ease;
+.ascent-switch svg {
+  display: block;
+  width: 50px;
+  height: 64px;
+  overflow: visible;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35));
 }
-.ascent-switch-thumb {
-  position: absolute;
-  top: 3px;
-  bottom: 3px;
-  left: 3px;
-  width: calc(50% - 3px);
-  border-radius: 999px;
-  background: #eef0f7;
-  transition: transform 0.35s cubic-bezier(0.6, 0.05, 0.3, 1);
-}
-.ascent-switch[aria-checked="false"] .ascent-switch-opt[data-side="pro"],
-.ascent-switch[aria-checked="true"] .ascent-switch-opt[data-side="cre"] {
-  color: #0e0f1c;
-}
-.ascent-switch[aria-checked="true"] .ascent-switch-thumb {
-  transform: translateX(100%);
-}
-.ascent-switch:hover .ascent-switch-opt {
-  color: rgba(238, 240, 247, 0.9);
-}
-.ascent-switch:hover[aria-checked="false"] .ascent-switch-opt[data-side="pro"],
-.ascent-switch:hover[aria-checked="true"] .ascent-switch-opt[data-side="cre"] {
-  color: #0e0f1c;
+.ascent-switch-state {
+  padding: 3px 6px;
+  border-radius: 3px;
+  background: rgba(20, 22, 32, 0.86);
+  color: #eef0f7;
+  font: 500 9.5px/1 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 .ascent-switch:focus-visible {
   outline: 2px solid #ff7a3d;
-  outline-offset: 3px;
+  outline-offset: 2px;
+}
+
+/* The hardware */
+.as-plate {
+  fill: #2a2d38;
+  stroke: #12131a;
+  stroke-width: 2;
+}
+.as-screw {
+  fill: #8d919c;
+}
+.as-base {
+  fill: #6f7380;
+}
+.as-lamp {
+  fill: #3b3e4a;
+  stroke: #12131a;
+  stroke-width: 1.5;
+  transition: fill 0.3s ease 0.15s;
+}
+.as-bat {
+  transform-origin: 43px 64px;
+  transition: transform 0.45s cubic-bezier(0.6, 0.05, 0.3, 1.4) 0.1s;
+}
+.as-bat rect {
+  fill: #c9ccd4;
+  stroke: #12131a;
+  stroke-width: 1.5;
+}
+.as-guard {
+  transform-origin: 43px 28px;
+  transition: transform 0.5s cubic-bezier(0.6, 0.05, 0.3, 1.3);
+}
+.as-guard rect {
+  fill: #c8322b;
+  fill-opacity: 0.92;
+  stroke: #5d1310;
+  stroke-width: 1.5;
+}
+.as-guard line {
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-width: 2;
+}
+
+/* Hover lifts the guard a little; on, the guard flips open, the toggle throws, the lamp lights. */
+.ascent-switch:hover .as-guard,
+.ascent-switch:focus-visible .as-guard {
+  transform: translateY(-8px) scaleY(0.82);
+}
+.ascent-switch[aria-checked="true"] .as-guard {
+  transform: translateY(-34px) scaleY(0.35);
+}
+.ascent-switch[aria-checked="true"] .as-bat {
+  transform: rotate(180deg);
+}
+.ascent-switch[aria-checked="true"] .as-lamp {
+  fill: #ff7a3d;
+}
+
+/* First-visit hint: a handwritten paper tag beside the switch. */
+.ascent-switch-hint {
+  position: fixed;
+  left: 74px;
+  bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  z-index: 2147483000;
+  margin: 0;
+  padding: 3px 10px 4px;
+  background: #fbf6e9;
+  color: #14172a;
+  border-radius: 2px;
+  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.4);
+  /* System handwriting faces only, so professional mode loads no extra font. */
+  font: 500 1.05rem/1.1 "Bradley Hand", "Segoe Print", "Chalkboard SE", "Comic Neue", cursive;
+  transform: rotate(-5deg);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.ascent-switch-hint::before {
+  content: "\2190  ";
 }
 
 @media (max-width: 576px) {
   .ascent-switch {
-    left: 12px;
-    font-size: 11px;
+    left: 8px;
   }
-  .ascent-switch-opt {
-    padding: 7px 10px;
+  .ascent-switch svg {
+    width: 42px;
+    height: 54px;
+  }
+  .ascent-switch-hint {
+    left: 60px;
+    bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+    font-size: 0.95rem;
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .ascent-switch-thumb,
-  .ascent-switch-opt {
+  .as-guard,
+  .as-bat,
+  .as-lamp {
     transition: none;
   }
 }
 @media print {
-  .ascent-switch {
+  .ascent-switch,
+  .ascent-switch-hint {
     display: none;
   }
 }

@@ -64,7 +64,7 @@ const el = (tag, cls, text) => {
 
 // Sky color and altitude (km) at the top of each section, pad to downlink.
 const SKY = {
-  pad: ["#fbcd9e", 0, "#f4c6c4"],
+  pad: ["#c9553f", 0, "#c97a8e"],
   projects: ["#a8cef0", 12],
   research: ["#3f7fc4", 50],
   people: ["#3a2e79", 85],

@@ -2,7 +2,7 @@
   Ascent sky engine.
 
   Scrolling is the climb. Each section has an altitude and a sky color for that
-  altitude (warm pad dawn, daytime blue, stratospheric blue, mesospheric violet,
+  altitude (ember dawn at the pad, daytime blue, stratospheric blue, mesospheric violet,
   black above the Kármán line). As the reader scrolls, the view's background
   blends between the colors of the section they're in and the next one.
 
@@ -21,7 +21,8 @@
 const INK = "#14172a";
 const STARLIGHT = "#eef0f7";
 const FLAME_DARK_SKY = "#ff7a3d"; // on night sky
-const FLAME_LIGHT_SKY = "#b23a0b"; // deeper flame for dawn and day skies
+const FLAME_LIGHT_SKY = "#b23a0b"; // deeper flame for day skies
+const FLAME_EMBER_SKY = "#fff0d4"; // pale flame for the ember dawn
 
 // ---- color math ---------------------------------------------------------
 const hex = (h) => h.match(/\w\w/g).map((x) => parseInt(x, 16));
@@ -53,8 +54,10 @@ export function palette(sky) {
   while (contrast(soft, bg) < 4.5) soft = mix(soft, text, 0.25);
   // Flame accent: whichever shade reads better on this sky; if neither clears
   // 3 : 1 (the mid-blue stratosphere), accents fall back to the text color.
+  // The orange flames come first; the pale ember flame only steps in on the
+  // ember dawn, where neither orange reads.
   const flame = [FLAME_LIGHT_SKY, FLAME_DARK_SKY].sort((a, b) => contrast(b, bg) - contrast(a, bg))[0];
-  const accent = contrast(flame, bg) >= 3 ? flame : text;
+  const accent = contrast(flame, bg) >= 3 ? flame : contrast(FLAME_EMBER_SKY, bg) >= 3 ? FLAME_EMBER_SKY : text;
   return { bg, text, soft, accent, dark, rule: mix(text, bg, 0.72) };
 }
 
@@ -79,7 +82,10 @@ export function createSky(root, sections, onAltitude) {
     while (i < tops.length - 1 && probe >= tops[i + 1]) i++;
     const next = Math.min(i + 1, sections.length - 1);
     const span = Math.max(1, (tops[next] ?? tops[i] + 1) - tops[i]);
-    const t = next === i ? 0 : Math.max(0, Math.min(1, (probe - tops[i]) / span));
+    // Each section holds its own sky for the first 30% of its height, then
+    // blends toward the next, so the pad opens on its true dawn color.
+    const raw = next === i ? 0 : Math.max(0, Math.min(1, (probe - tops[i]) / span));
+    const t = Math.max(0, (raw - 0.3) / 0.7);
     // A section may name a mid color (the pad's rose dawn), so the blend from
     // warm to blue passes through pink instead of muddy grey.
     const mid = sections[i].mid;
