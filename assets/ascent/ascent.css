@@ -90,8 +90,9 @@ html.ascent-on body {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 8px 28px;
-  padding: calc(14px + env(safe-area-inset-top, 0px)) max(var(--gutter), 150px) 12px var(--gutter);
+  gap: 8px 22px;
+  min-height: 80px; /* room for the docked flight tag */
+  padding: calc(14px + env(safe-area-inset-top, 0px)) max(var(--gutter), 340px) 12px var(--gutter);
   background: color-mix(in srgb, var(--sky) 86%, transparent);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -107,7 +108,7 @@ html.ascent-on body {
 .ascent-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px 18px;
+  gap: 4px 13px;
   text-transform: uppercase;
 }
 .ascent-nav a {
@@ -1094,6 +1095,15 @@ html.ascent-on body {
   color: var(--text-soft);
 }
 
+@media (max-width: 576px) {
+  .ascent-head {
+    min-height: 62px;
+    padding-right: 250px;
+  }
+  .ascent-altimeter {
+    display: none;
+  }
+}
 @media (max-width: 720px) {
   .ascent-top,
   .rs-grid,
