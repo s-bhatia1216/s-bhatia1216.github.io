@@ -28,17 +28,17 @@ html.ascent-boot body > *:not(.ascent-switch) {
 }
 .ascent-switch svg {
   display: block;
-  width: 160px;
+  width: 320px;
   height: auto;
   overflow: visible;
 }
 .ascent-switch-state {
-  margin-right: 46px;
-  padding: 3px 6px;
+  margin-right: 92px;
+  padding: 4px 8px;
   border-radius: 3px;
   background: rgba(20, 22, 32, 0.86);
   color: #eef0f7;
-  font: 500 9px/1 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font: 500 12px/1 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -106,8 +106,8 @@ html.ascent-boot body > *:not(.ascent-switch) {
 /* Pointer: a gentle "click here" beside the tag, in professional mode only. */
 .ascent-switch-cue {
   position: fixed;
-  top: calc(var(--ascent-switch-top, 67px) + 12px);
-  right: 186px;
+  top: calc(var(--ascent-switch-top, 67px) + 30px);
+  right: 344px;
   z-index: 2147483000;
   display: flex;
   align-items: center;
@@ -118,7 +118,7 @@ html.ascent-boot body > *:not(.ascent-switch) {
   /* The theme's own text color, so it reads in light and dark themes. */
   color: var(--global-text-color, #14172a);
   /* System handwriting faces only, so professional mode loads no extra font. */
-  font: 500 0.95rem/1.1 "Bradley Hand", "Segoe Print", "Chalkboard SE", "Comic Neue", cursive;
+  font: 500 1.1rem/1.1 "Bradley Hand", "Segoe Print", "Chalkboard SE", "Comic Neue", cursive;
   white-space: nowrap;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -155,33 +155,49 @@ html.ascent-on .ascent-switch {
   top: calc(env(safe-area-inset-top, 0px) + 4px);
 }
 html.ascent-on .ascent-switch svg {
-  width: 118px;
+  width: 236px;
 }
 html.ascent-on .ascent-switch-state {
   display: none;
+}
+/* Docked, the pulled tag tilts less so it stays inside the header. */
+html.ascent-on .ascent-switch[aria-checked="true"] .as-tag {
+  transform: translate(-22px, 0) rotate(-5deg);
+}
+html.ascent-on .ascent-switch[aria-checked="true"]:hover .as-tag {
+  transform: translate(-22px, 0) rotate(-3deg);
 }
 
 /* Narrow screens: a smaller tag so it stays clear of the page text. */
 @media (max-width: 1199px) {
   .ascent-switch svg {
-    width: 118px;
+    width: 236px;
   }
   .ascent-switch-state {
-    margin-right: 34px;
+    margin-right: 68px;
   }
   .ascent-switch-cue {
-    right: 144px;
-    top: calc(var(--ascent-switch-top, 67px) + 7px);
-    font-size: 0.85rem;
+    right: 260px;
+    top: calc(var(--ascent-switch-top, 67px) + 22px);
+    font-size: 0.9rem;
   }
 }
-/* Phones: a shorter pointer. */
+/* Phones: there's no room between the navbar and the page title, so the tag
+   moves up into the navbar's empty space beside the menu button. The label and
+   pointer are dropped there; the tag itself carries the action. */
 @media (max-width: 576px) {
-  .ascent-cue-long {
-    display: none;
+  .ascent-switch,
+  html.ascent-on .ascent-switch {
+    top: calc(env(safe-area-inset-top, 0px) + 3px);
+    right: 64px;
   }
-  .ascent-cue-short {
-    display: inline;
+  .ascent-switch svg,
+  html.ascent-on .ascent-switch svg {
+    width: 172px;
+  }
+  .ascent-switch-state,
+  .ascent-switch-cue {
+    display: none;
   }
 }
 @media (prefers-reduced-motion: reduce) {
