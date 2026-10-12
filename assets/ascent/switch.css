@@ -1,5 +1,6 @@
 /*
-  Ascent mode switch: a REMOVE BEFORE FLIGHT tag, top right below the navbar.
+  Ascent mode switch: a REMOVE BEFORE FLIGHT tag, top right below the navbar,
+  scrolling with the page.
   The only creative-mode styles that load in professional mode. The tag carries
   its own colors (flight-line red, white lettering, steel pin), so it reads
   over the professional page in either theme and over every color of the sky.
@@ -10,8 +11,10 @@ html.ascent-boot body > *:not(.ascent-switch) {
   visibility: hidden;
 }
 
+/* Part of the page in professional mode: it sits below the navbar and scrolls
+   away with the page instead of floating over the text. */
 .ascent-switch {
-  position: fixed;
+  position: absolute;
   top: var(--ascent-switch-top, 67px);
   right: 10px;
   z-index: 2147483000;
@@ -105,7 +108,7 @@ html.ascent-boot body > *:not(.ascent-switch) {
 
 /* Pointer: a gentle "click here" beside the tag, in professional mode only. */
 .ascent-switch-cue {
-  position: fixed;
+  position: absolute;
   top: calc(var(--ascent-switch-top, 67px) + 30px);
   right: 344px;
   z-index: 2147483000;
@@ -150,8 +153,10 @@ html.ascent-boot body > *:not(.ascent-switch) {
   }
 }
 
-/* In creative mode the tag docks inside the creative header, clear of content. */
+/* In creative mode the tag docks inside the creative header, clear of content.
+   The creative view scrolls inside its own layer, so the tag stays fixed here. */
 html.ascent-on .ascent-switch {
+  position: fixed;
   top: calc(env(safe-area-inset-top, 0px) + 4px);
 }
 html.ascent-on .ascent-switch svg {
