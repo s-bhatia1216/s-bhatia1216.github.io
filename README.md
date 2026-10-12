@@ -39,7 +39,7 @@ Each fact lives in one place. Edit these files and rebuild; never edit layout co
 - `patches` and `flightlog`: the Crews and patches section. Each patch picks a `motif`: `rocket`, `moon`, `constellation`, or `lamp`.
 - `honors`: awards for the star catalog (publications are added from `research`).
 - `curiosities`: questions you're chasing.
-- `contact`: emails, links, and the resume PDF.
+- `contact`: emails, links, and the resume PDF (opened in an on-page viewer).
 
 Any value that starts with `TODO` is treated as a placeholder and hidden in creative mode.
 

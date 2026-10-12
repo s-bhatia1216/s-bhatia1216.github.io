@@ -12,7 +12,7 @@
                               expand in place
     400 km  Curiosities       questions I'm chasing (placeholders stay hidden)
                               and the orbit toy
-    Downlink Contact          addresses, links, and the resume PDF
+    Downlink Contact          addresses, links, and the resume in a viewer
 
   Everything is plain, semantic HTML built from content.json; the only
   graphics are the Lorenz SVG, the patches, and the orbit canvas.
@@ -291,11 +291,52 @@ function contact(host, c) {
     links.append(p);
   }
   const res = el("div", "dl-col");
-  const a = link(c.baseurl + c.contact.resume, "Download my resume (PDF)", "dl-resume");
-  a.setAttribute("download", "");
-  res.append(a, el("p", "dl-back", "Pull the tag at the top to return to the professional site."));
+  const open = el("button", "dl-resume", "View my resume");
+  open.type = "button";
+  open.setAttribute("aria-haspopup", "dialog");
+  open.addEventListener("click", () => resumeViewer(c.baseurl + c.contact.resume, open));
+  res.append(open, el("p", "dl-back", "Pull the tag at the top to return to the professional site."));
   grid.append(mail, links, res);
   host.append(grid);
+}
+
+// The resume opens in a viewer over the page instead of downloading, so
+// visitors stay on the site. A native modal <dialog> handles focus, Escape,
+// and the backdrop; the PDF renders in the browser's own viewer. Phones that
+// can't show a PDF inline get a link to open it instead.
+let viewer = null;
+function resumeViewer(href, opener) {
+  if (!viewer) {
+    viewer = el("dialog", "rv");
+    viewer.setAttribute("aria-label", "Resume");
+    const bar = el("div", "rv-bar");
+    const title = el("p", "rv-title", "Resume");
+    const actions = el("div", "rv-actions");
+    const newTab = link(href, "Open in new tab", "rv-link");
+    const dl = link(href, "Download", "rv-link");
+    dl.setAttribute("download", "");
+    const close = el("button", "rv-close", "Close");
+    close.type = "button";
+    close.addEventListener("click", () => viewer.close());
+    actions.append(newTab, dl, close);
+    bar.append(title, actions);
+    const obj = el("object", "rv-pdf");
+    obj.type = "application/pdf";
+    obj.data = `${href}#view=FitH&navpanes=0`;
+    const fallback = el("p", "rv-fallback");
+    fallback.append("This browser can't show the PDF here. ", link(href, "Open the resume", "rv-link"), " instead.");
+    obj.append(fallback);
+    viewer.append(bar, obj);
+    // Click on the backdrop closes it.
+    viewer.addEventListener("click", (e) => {
+      if (e.target === viewer) viewer.close();
+    });
+    viewer.addEventListener("close", () => viewer.returnFocus?.focus());
+    document.getElementById("ascent-root").append(viewer);
+  }
+  viewer.returnFocus = opener;
+  viewer.showModal();
+  viewer.querySelector(".rv-close").focus();
 }
 
 const RENDER = { projects: notebook, research, people, catalog, curiosities, contact };
