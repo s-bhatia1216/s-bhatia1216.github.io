@@ -7,7 +7,7 @@ The site has two modes:
 - **Professional** (the default): the regular al-folio site.
 - **Creative**: "Ascent", an interactive view that tells the same story as a launch to orbit. Scrolling is the climb: the sky changes color with altitude, and each section sits at its own height (pad, troposphere, stratosphere, mesosphere, Kármán line, low Earth orbit).
 
-Visitors switch modes with the REMOVE BEFORE FLIGHT tag in the top right corner. To link straight into creative mode (for example from a resume), use:
+Visitors switch modes with the REMOVE BEFORE FLIGHT tag in the top right corner of the home page; every other tab is professional only. To link straight into creative mode (for example from a resume), use:
 
 ```
 https://s-bhatia1216.github.io/?mode=creative
@@ -47,7 +47,7 @@ Creative mode reads everything through `assets/ascent/content.json`, which Jekyl
 
 ## How creative mode is built
 
-- `_plugins/ascent_switch.rb` adds the switch to every page at build time (the theme's layouts live in a gem, so nothing is overridden). Professional pages load only `switch.js` and `switch.css`, about 3 KB gzipped.
+- `_plugins/ascent_switch.rb` adds the switch to the home page at build time (the theme's layouts live in a gem, so nothing is overridden). The home page loads only `switch.js` and `switch.css` (about 3 KB gzipped) until creative mode is turned on; other pages load nothing extra.
 - Everything else in `assets/ascent/` loads only when someone turns creative mode on:
   - `ascent.js` builds the view and handles the crossfade; the professional page underneath is covered, never edited.
   - `sky.js` turns scrolling into sky color, picks ink or starlight text to keep WCAG AA contrast at every altitude, fades in the starfield, and runs the altimeter.

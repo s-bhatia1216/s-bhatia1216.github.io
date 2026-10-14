@@ -1,14 +1,14 @@
-# Ascent: adds the Professional / Creative mode switch to every page.
+# Ascent: adds the Professional / Creative mode switch to the home page.
 #
 # The page layouts live in the al_folio_core gem, so instead of overriding them
-# this hook appends three small tags to each rendered HTML page:
+# this hook appends three small tags to the rendered home page:
 #   1. a one-line inline script that marks <html> before first paint when
 #      creative mode is requested (?mode=creative or a saved choice), so the
 #      professional page does not flash before the creative view covers it;
 #   2. the switch stylesheet (about 2 KB);
 #   3. the deferred switch script, carrying the labels from _data/ascent.yml.
 # Everything else in creative mode is loaded by the switch only when it is
-# turned on. Pages with no layout (redirects, data files) are left alone.
+# turned on. Every other page is left untouched.
 
 require "cgi"
 
@@ -23,6 +23,8 @@ module Ascent
   def self.inject(doc)
     return unless doc.output_ext == ".html" && doc.output.is_a?(String)
     return if doc.data["layout"].nil? || doc.data["layout"] == "null"
+    # The switch lives on the home page only; every other tab stays purely professional.
+    return unless doc.url == "/" || doc.url == "/index.html"
     html = doc.output
     return if html.include?("ascent/switch.js") || !html.include?("</head>")
 
