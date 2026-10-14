@@ -35,7 +35,7 @@ On the research side, my senior thesis with Prof. Beeson built an imitation-lear
 
 I also love teaching. I've been a course assistant for Princeton's Linear Systems and Intro to Computer Science courses, supporting 250+ students across three semesters, and I taught build workshops as co-president of the Princeton Rocketry Club. More on my [teaching]({{ '/teaching/' | relative_url }}) page.
 
-Outside of that: rockets, hackathons, and building computers from scratch.
+Outside of that: rockets, hackathons, building computers from scratch, Pilates and Lagree, and matcha.
 
 <h2><a href="{{ '/news/' | relative_url }}" style="color: inherit">updates</a></h2>
 {% include news.liquid limit=true %}
